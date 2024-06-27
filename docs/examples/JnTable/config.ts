@@ -18,7 +18,7 @@
 // }
 import { ref, onMounted } from 'vue'
 // 表格列配置
-export const columns = ref([
+export const columns1 = ref([
   { type: 'expand', label: '', slotName: 'expand' },
   { type: 'selection', label: '', reserveSelection: true },
   { type: 'index', label: '序号', width: '60', allSort: true },

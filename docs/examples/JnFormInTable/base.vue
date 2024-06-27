@@ -1,9 +1,9 @@
 <!--
  * @Author: yangyu 1431330771@qq.com
  * @Date: 2023-09-19 11:45:27
- * @LastEditors: yangyu 1431330771@qq.com
- * @LastEditTime: 2024-05-21 09:47:02
- * @FilePath: \jnf-ui-master\docs\examples\JnFormInTable\base.vue
+ * @LastEditors: wangchao 6141364@qq.com
+ * @LastEditTime: 2024-06-27 13:05:48
+ * @FilePath: \jnf-ui\docs\examples\JnFormInTable\base.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
 <template>
@@ -223,14 +223,6 @@ const formOptions = ref({
     },
     children: [],
   },
-  title2: {
-    type: 'title',
-    label: '基础数据信息32333',
-    colSize: 24,
-    attrs: {
-      // isShowExpand: true,
-    },
-  },
   list: {},
   // saleDeptCode1: {
   //   type: 'checkbox-group',
@@ -427,7 +419,7 @@ const tableOptions = ref([
     label: '装炉位wqwq置',
     columnConfig: {
       minWidth: '120',
-      align:'right'
+      align: 'right',
     },
   },
   {
@@ -439,7 +431,7 @@ const tableOptions = ref([
     configEdit: {
       type: 'date-picker',
       attrs: {
-        type: "daterange",
+        type: 'daterange',
       },
     },
   },

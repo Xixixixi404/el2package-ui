@@ -7,45 +7,93 @@
  * @Description: 封装表单jnf-form
 -->
 <template>
-  <el-form class="jnf-form" ref="form" v-if="modelValue" :model="modelValue" :rules="rules" v-bind="$attrs"
-    :validate-on-rule-change="false">
+  <el-form
+    class="jnf-form"
+    ref="form"
+    v-if="modelValue"
+    :model="modelValue"
+    :rules="rules"
+    v-bind="$attrs"
+    :validate-on-rule-change="false"
+  >
     <el-row class="demo-autocomplete">
       <template v-for="(item, key) in formOpts" :key="key">
-        <div v-if="item.type == 'title' && item.show" class="secondary-tit" :class="item.attrs?.className">
+        <div
+          v-if="item.type == 'title' && item.show"
+          class="secondary-tit"
+          :class="item.attrs?.className"
+        >
           <span v-html="item.label"></span>
-          <el-button type="primary" v-if="item.attrs?.isShowExpand" @click="handleShow(key)" link>
+          <el-button
+            type="primary"
+            v-if="item.attrs?.isShowExpand"
+            @click="handleShow(key)"
+            link
+          >
             <el-icon>
               <ArrowDown v-if="!item.show" />
               <ArrowUp v-else />
             </el-icon>
-            {{ !item.show ? '展开' : '收起' }}</el-button>
+            {{ !item.show ? '展开' : '收起' }}</el-button
+          >
           <slot :name="key"></slot>
         </div>
         <slot v-else :name="key" :form-data="modelValue" :schema="{ ...item }">
           <el-col :span="item?.colSize" v-show="item.show">
-            <el-form-item :prop="key" :label="item.label" :label-width="item.labelWidth">
+            <el-form-item
+              :prop="key"
+              :label="item.label"
+              :label-width="item.labelWidth"
+            >
               <template v-if="!item?.hasOwnProperty('children')">
-                <component v-if="item.type !== 'upload' && item.type !== 'editor'" v-bind="cAttrs(item)"
-                  :is="`el-${item.type}`" v-model="modelValue[key!]" :placeholder="item.placeholder"
-                  v-on="cEvent(item)">
+                <component
+                  v-if="item.type !== 'upload' && item.type !== 'editor'"
+                  v-bind="cAttrs(item)"
+                  :is="`el-${item.type}`"
+                  v-model="modelValue[key!]"
+                  :placeholder="item.placeholder"
+                  v-on="cEvent(item)"
+                >
                 </component>
-                <el-upload v-if="item.type === 'upload'" v-bind="item.uploadAttrs" :on-preview="onPreview"
-                  :on-remove="onRemove" :on-success="onSuccess" :on-error="onError" :on-progress="onProgress"
-                  :on-change="onChange" :before-upload="beforeUpload" :before-remove="beforeRemove"
-                  :http-request="httpRequest" :on-exceed="onExceed" class="m-el-upload">
+                <el-upload
+                  v-if="item.type === 'upload'"
+                  v-bind="item.uploadAttrs"
+                  :on-preview="onPreview"
+                  :on-remove="onRemove"
+                  :on-success="onSuccess"
+                  :on-error="onError"
+                  :on-progress="onProgress"
+                  :on-change="onChange"
+                  :before-upload="beforeUpload"
+                  :before-remove="beforeRemove"
+                  :http-request="httpRequest"
+                  :on-exceed="onExceed"
+                  class="m-el-upload"
+                >
                   <slot name="uploadArea"></slot>
                   <slot name="uploadTip"></slot>
                 </el-upload>
               </template>
               <!-- :disabled="item.attrs?.disabled ?? props?.disabled" -->
-              <component v-else :is="`el-${item.type}`" v-model="modelValue[key!]" :placeholder="item.placeholder"
-                :disabled="props.disabled || item.attrs?.disabled" v-bind="cAttrs(item)" v-on="cEvent(item)">
+              <component
+                v-else
+                :is="`el-${item.type}`"
+                v-model="modelValue[key!]"
+                :placeholder="item.placeholder"
+                :disabled="props.disabled || item.attrs?.disabled"
+                v-bind="cAttrs(item)"
+                v-on="cEvent(item)"
+              >
                 <!-- :disabled="child?.disabled ?? props?.disabled" -->
-                <component v-if="compChildName(item)" :is="`el-${compChildName(item)}`"
-                  v-for="(child, i) in item?.children" :key="child[item.attrs?.valueKey || 'value']"
-                  :label="compChildLabel(item, child)" :value="compChildValue(item, child, i)"
-                  :disabled="props.disabled || child?.disabled">{{
-    child[item.attrs?.props?.label || 'label'] }}
+                <component
+                  v-if="compChildName(item)"
+                  :is="`el-${compChildName(item)}`"
+                  v-for="(child, i) in item?.children"
+                  :key="child[item.attrs?.valueKey || 'value']"
+                  :label="compChildLabel(item, child)"
+                  :value="compChildValue(item, child, i)"
+                  :disabled="props.disabled || child?.disabled"
+                  >{{ child[item.attrs?.props?.label || 'label'] }}
                 </component>
               </component>
             </el-form-item>
@@ -53,7 +101,12 @@
         </slot>
       </template>
       <el-col :span="6">
-        <slot name="searchAction" :form="form" :model="modelValue" :isShowExpand="isShowExpand"></slot>
+        <slot
+          name="searchAction"
+          :form="form"
+          :model="modelValue"
+          :isShowExpand="isShowExpand"
+        ></slot>
       </el-col>
     </el-row>
     <!-- <el-form-item v-if="!isSearch">
@@ -180,8 +233,8 @@ const calculateShowCol = (expand: boolean) => {
         ? expand
         : showCol(item?.colSize)
       : item.hasOwnProperty('show')
-        ? item.show
-        : true
+      ? item.show
+      : true
     item.show = state
   }
   isShowExpand.value = expand ? !expand : sum.value <= 24 * props.rowsTotal
@@ -262,7 +315,7 @@ const initForm = async ({ formData: data = {}, type }) => {
   //   model.value = data
   // }
   await nextTick()
-  form.value!.clearValidate()
+  form.value?.clearValidate()
   calculateShowCol(false)
   isMethodCalled.value = false
 }
@@ -369,19 +422,19 @@ const cAttrs = computed(() => {
     const itemAttrs =
       typeof item.attrs == 'function'
         ? {
-          ...item.attrs(props.modelValue),
-          disabled: props?.disabled
-            ? true
-            : item.attrs(props.modelValue)?.disabled,
-        }
+            ...item.attrs(props.modelValue),
+            disabled: props?.disabled
+              ? true
+              : item.attrs(props.modelValue)?.disabled,
+          }
         : {
-          clearable: true,
-          filterable: true,
-          // disabled: item.attrs?.disabled ?? props?.disabled,
-          // ...$attrs,
-          ...item.attrs,
-          disabled: props.disabled || item.attrs?.disabled,
-        }
+            clearable: true,
+            filterable: true,
+            // disabled: item.attrs?.disabled ?? props?.disabled,
+            // ...$attrs,
+            ...item.attrs,
+            disabled: props.disabled || item.attrs?.disabled,
+          }
     return itemAttrs
   }
 })
@@ -476,7 +529,6 @@ let onExceed = (files: File, fileList: FileList) => {
 </style>
 <style lang="scss">
 .jnf-form {
-
   .el-input,
   .el-cascader,
   .el-select,

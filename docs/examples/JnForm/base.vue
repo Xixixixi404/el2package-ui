@@ -10,11 +10,22 @@
   <t-layout-page>
     <t-layout-page-item>
       <jn-button @click="open">打开</jn-button>
-      <el-dialog :title="'212123'" width="70%" v-model="dialogSelectEnt" draggable @close="handleClose">
+      <el-dialog
+        :title="'212123'"
+        width="70%"
+        v-model="dialogSelectEnt"
+        draggable
+        @close="handleClose"
+      >
         {{ formData }} formData
 
-        <jn-form ref="detailForm" label-width="110px" :formOpts="formOptions" :disabled="false"
-          v-model="formData"></jn-form>
+        <jn-form
+          ref="detailForm"
+          label-width="110px"
+          :formOpts="formOptions"
+          :disabled="true"
+          v-model="formData"
+        ></jn-form>
         <!-- v-model:value="formData" -->
         <!-- v-model:value="formData" -->
         <el-button @click="handleClose">取消</el-button>
@@ -82,7 +93,7 @@ const formOptions = ref({
     colSize: 24,
     attrs: {
       isShowExpand: true,
-      className:'wqwqwqwq'
+      className: 'wqwqwqwq',
     },
   },
   orderNumber: {
@@ -95,11 +106,17 @@ const formOptions = ref({
     attrs: {},
   },
   telf1: {
-    type: "input",
-    label: "联系人电话",
-    placeholder: "请输入联系电话",
+    type: 'input',
+    label: '联系人电话',
+    placeholder: '请输入联系电话',
     required: true,
-    rules: [{ "pattern": "/^[1][3,4,5,7,8][0-9]{9}$/", "message": "手机号码格式不正确", "trigger": ["blur"] }],
+    rules: [
+      {
+        pattern: '/^[1][3,4,5,7,8][0-9]{9}$/',
+        message: '手机号码格式不正确',
+        trigger: ['blur'],
+      },
+    ],
     attrs: {
       clearable: true,
       colProp: 6,
@@ -422,14 +439,6 @@ const formOptions = ref({
     },
     children: [],
   },
-  title2: {
-    type: 'title',
-    label: '基础数据信息32333',
-    colSize: 24,
-    attrs: {
-      isShowExpand: true,
-    },
-  },
   saleDeptCode1: {
     type: 'radio-group',
     label: '销售部门代码111',
@@ -531,12 +540,12 @@ const formOptions = ref({
   },
 })
 
-onMounted(() => { })
+onMounted(() => {})
 async function open() {
   dialogSelectEnt.value = true
   await nextTick()
   formData.value = {
-    telf1: '13234556676'
+    telf1: '13234556676',
   }
   // detailForm?.value.initForm({
   //   formData: {

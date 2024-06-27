@@ -86,9 +86,9 @@
     "bit404"
   ],
   "dependencies": {
-    "@vue-office/docx": "^1.6.0",
-    "@vue-office/excel": "^1.6.0",
-    "@vue-office/pdf": "^1.6.0",
+    "@vue-office/docx": "^1.6.2",
+    "@vue-office/excel": "^1.6.2",
+    "@vue-office/pdf": "^1.6.2",
     "lodash": "^4.17.21"
   }
 }

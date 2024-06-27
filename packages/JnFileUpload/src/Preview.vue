@@ -36,10 +36,6 @@
   </el-dialog>
 </template>
 <script lang="ts" setup>
-import VueOfficeDocx from '@vue-office/docx'
-import VueOfficePdf from '@vue-office/pdf'
-import VueOfficeExcel from '@vue-office/excel'
-import '@vue-office/excel/lib/index.css'
 import { ref, nextTick, getCurrentInstance } from 'vue'
 const { proxy } = getCurrentInstance() as any
 const previewUrl = ref('')
