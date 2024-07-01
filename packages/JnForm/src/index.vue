@@ -2,7 +2,7 @@
  * @Author: yangyu 1431330771@qq.com
  * @Date: 2023-06-16 15:13:51
  * @LastEditors: wangchao 6141364@qq.com
- * @LastEditTime: 2024-07-01 11:15:55
+ * @LastEditTime: 2024-07-01 15:28:17
  * @FilePath: \el2package-ui\packages\JnForm\src\index.vue
  * @Description: 封装表单jnf-form
 -->
@@ -19,7 +19,7 @@
     <el-row class="demo-autocomplete">
       <template v-for="(item, key) in formOpts" :key="key">
         <div
-          v-if="item.type == 'title' || item.show"
+          v-if="item.type == 'title'"
           class="secondary-tit"
           :class="item.attrs?.className"
         >
