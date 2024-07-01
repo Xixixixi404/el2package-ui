@@ -85,9 +85,9 @@ export default defineConfig({
     lib: {
       // entry: resolve(__dirname, 'packages/index.ts'),
       entry: './packages/index.ts',
-      name: 'jnf-ui',
+      name: 'el2package-ui',
       // formats: ['es', 'cjs'],
-      fileName: 'jnf-ui',
+      fileName: 'el2package-ui',
     },
-  }
+  },
 })

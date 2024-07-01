@@ -1,12 +1,12 @@
 {
   "name": "el2package-ui",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Vue3 中基于Element-plus二次封装基础组件文档",
   "author": "yangyu",
   "license": "ISC",
   "private": false,
-  "main": "lib/jnf-ui.umd.cjs",
-  "module": "lib/jnf-ui.umd.cjs",
+  "main": "lib/el2package-ui.umd.cjs",
+  "module": "lib/el2package-ui.umd.cjs",
   "types": "lib/index.d.ts",
   "type": "module",
   "files": [
