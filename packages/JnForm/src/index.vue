@@ -2,7 +2,7 @@
  * @Author: yangyu 1431330771@qq.com
  * @Date: 2023-06-16 15:13:51
  * @LastEditors: wangChao 6141364@qq.com
- * @LastEditTime: 2024-07-18 11:50:19
+ * @LastEditTime: 2024-07-18 13:43:34
  * @FilePath: \el2package-ui\packages\JnForm\src\index.vue
  * @Description: 封装表单jnf-form
 -->
@@ -17,7 +17,7 @@
     :validate-on-rule-change="false"
   >
     <template v-for="(list, index) in formOptsCopy">
-      <div class="item-row">
+      <div :class="isShowInfo ? 'item-row' : ''">
         <el-row class="demo-autocomplete">
           <template v-for="(items, key) in list">
             <template v-for="(item, key) in items" :key="key">
@@ -139,6 +139,7 @@ import {
   onBeforeUnmount,
 } from 'vue'
 import cloneDeep from 'lodash/cloneDeep'
+import { forIn } from 'lodash'
 
 let props = defineProps({
   modelValue: {
@@ -290,6 +291,7 @@ let form = ref<any>()
 let editorVal = ref('')
 let formOptsCopy = ref<any>([])
 
+let isShowInfo = ref(false)
 let isMethodCalled = ref(false)
 /**
  * @description: 初始化菜单
@@ -319,6 +321,7 @@ const initForm = async ({ formData: data = {}, type }) => {
       ...(formSchema[key].rules || []),
     ]
     if (formSchema[key].type === 'title') {
+      isShowInfo.value = true
       if (newArr.length > 0) {
         formOptsCopy.value.push(newArr)
         newArr = []
@@ -583,10 +586,6 @@ let onExceed = (files: File, fileList: FileList) => {
     font-family: PingFang SC-Heavy, PingFang SC;
     color: rgba(38, 38, 38, 1);
     // font-weight: 900;
-    background: rgba(154, 202, 255, 0.17);
-    position: absolute;
-    left: 0;
-    top: 0;
   }
 
   // .secondary-tit::before {
@@ -626,6 +625,12 @@ let onExceed = (files: File, fileList: FileList) => {
     border-radius: 4px;
     .demo-autocomplete {
       padding: 56px 12px 0;
+    }
+    .secondary-tit {
+      background: rgba(154, 202, 255, 0.17);
+      position: absolute;
+      left: 0;
+      top: 0;
     }
   }
 }
