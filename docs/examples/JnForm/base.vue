@@ -1,9 +1,9 @@
 <!--
  * @Author: yangyu 1431330771@qq.com
  * @Date: 2023-09-19 11:45:27
- * @LastEditors: yangyu 1431330771@qq.com
- * @LastEditTime: 2024-06-18 16:02:16
- * @FilePath: \jnf-ui\docs\examples\JnForm\base.vue
+ * @LastEditors: wangChao 6141364@qq.com
+ * @LastEditTime: 2024-07-18 11:50:39
+ * @FilePath: \el2package-ui\docs\examples\JnForm\base.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
 <template>
@@ -21,13 +21,10 @@
 
         <jn-form
           ref="detailForm"
-          label-width="110px"
           :formOpts="formOptions"
-          :disabled="true"
+          :disabled="false"
           v-model="formData"
         ></jn-form>
-        <!-- v-model:value="formData" -->
-        <!-- v-model:value="formData" -->
         <el-button @click="handleClose">取消</el-button>
         <el-button type="primary" @click="submitForm"> 提交 </el-button>
       </el-dialog>
@@ -102,7 +99,7 @@ const formOptions = ref({
     placeholder: '',
     required: true,
     rules: [],
-    colSize: 6,
+    colSize: 12,
     attrs: {},
   },
   telf1: {
@@ -119,7 +116,7 @@ const formOptions = ref({
     ],
     attrs: {
       clearable: true,
-      colProp: 6,
+      colProp: 12,
     },
   },
   customerType: {
