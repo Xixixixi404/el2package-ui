@@ -2,7 +2,7 @@
  * @Author: yangyu 1431330771@qq.com
  * @Date: 2023-06-16 15:13:51
  * @LastEditors: wangChao 6141364@qq.com
- * @LastEditTime: 2024-07-18 13:43:34
+ * @LastEditTime: 2024-08-12 09:50:20
  * @FilePath: \el2package-ui\packages\JnForm\src\index.vue
  * @Description: 封装表单jnf-form
 -->
@@ -39,7 +39,7 @@
                   </el-icon>
                   {{ !item.show ? '展开' : '收起' }}</el-button
                 >
-                <slot :name="key"></slot>
+                <slot :name="item.slotName || key" :scope="item"></slot>
               </div>
               <slot
                 v-else
@@ -54,6 +54,11 @@
                     :label-width="item.labelWidth"
                   >
                     <template v-if="!item?.hasOwnProperty('children')">
+                      <slot
+                        v-if="item.type === 'slot'"
+                        :name="item.slotName"
+                        :scope="item"
+                      ></slot>
                       <component
                         v-if="item.type !== 'upload' && item.type !== 'editor'"
                         v-bind="cAttrs(item)"

@@ -2,7 +2,7 @@
  * @Author: yangyu 1431330771@qq.com
  * @Date: 2023-09-19 11:45:27
  * @LastEditors: wangChao 6141364@qq.com
- * @LastEditTime: 2024-07-18 11:50:39
+ * @LastEditTime: 2024-08-12 09:56:06
  * @FilePath: \el2package-ui\docs\examples\JnForm\base.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -24,7 +24,16 @@
           :formOpts="formOptions"
           :disabled="false"
           v-model="formData"
-        ></jn-form>
+        >
+          <template #aaaa="{ scope }">
+            <div>
+              <el-button type="primary">Primary</el-button>
+            </div>
+          </template>
+          <template #bbbb="{ scope }">
+            <div><el-button type="primary">Primary</el-button></div>
+          </template>
+        </jn-form>
         <el-button @click="handleClose">取消</el-button>
         <el-button type="primary" @click="submitForm"> 提交 </el-button>
       </el-dialog>
@@ -92,15 +101,17 @@ const formOptions = ref({
       isShowExpand: true,
       className: 'wqwqwqwq',
     },
+    slotName: 'aaaa',
   },
   orderNumber: {
-    type: 'input',
+    type: 'slot',
     label: '订单编号',
     placeholder: '',
     required: true,
     rules: [],
     colSize: 12,
     attrs: {},
+    slotName: 'bbbb',
   },
   telf1: {
     type: 'input',
@@ -581,3 +592,9 @@ function submitForm(params) {
   let model = detailForm.value.getFormData()
 }
 </script>
+
+<style>
+.wqwqwqwq {
+  display: flex;
+}
+</style>
