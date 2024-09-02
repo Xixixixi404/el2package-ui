@@ -1,9 +1,9 @@
 /*
  * @Author: yangyu 1431330771@qq.com
  * @Date: 2023-08-31 09:20:56
- * @LastEditors: yangyu 1431330771@qq.com
- * @LastEditTime: 2023-09-22 09:39:33
- * @FilePath: \zr_szhpt_web\src\views\test\config\tableConfig.js
+ * @LastEditors: wangChao 6141364@qq.com
+ * @LastEditTime: 2024-09-02 11:21:53
+ * @FilePath: \el2package-ui\docs\examples\JnTable\config.ts
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
 // import type { TableColumnCtx } from 'element-plus/es/components/table/src/table-column/defaults'
@@ -48,6 +48,7 @@ export const columns1 = ref([
     //   // @ts-ignore
     //   return row[property] === value
     // },
+    showOverflowTooltip: false,
     fit: true,
     // slotName: "name",
     render: (val) => {

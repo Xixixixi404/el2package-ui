@@ -24,7 +24,6 @@
       <el-table-column
         v-else
         v-bind="column"
-        show-overflow-tooltip
         :index="column.allSort ? typeIndex : undefined"
       >
         <template v-if="column.slotName" v-slot="scope">
@@ -152,6 +151,7 @@ function getTableColumnConfig(cacheKey, columns) {
   return (
     tableColumnConfig.value[generateStorageKey(cacheKey)] ||
     columns.map((obj) => {
+      obj.showOverflowTooltip = obj.showOverflowTooltip === false ? false : true
       obj.checked = true
       return obj
     })
