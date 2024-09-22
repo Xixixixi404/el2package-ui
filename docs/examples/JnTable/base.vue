@@ -1,15 +1,15 @@
 <!--
  * @Author: yangyu 1431330771@qq.com
  * @Date: 2023-09-19 11:45:27
- * @LastEditors: yangyu 1431330771@qq.com
- * @LastEditTime: 2024-05-23 10:45:33
- * @FilePath: \jnf-ui-master\docs\examples\JnForm\base.vue
+ * @LastEditors: wangChao 6141364@qq.com
+ * @LastEditTime: 2024-09-22 11:16:30
+ * @FilePath: \el2package-ui\docs\examples\JnTable\base.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
 <template>
   <t-layout-page>
     <t-layout-page-item>
-      <div style="height: 20px;"></div>
+      <div style="height: 20px"></div>
       <!-- <jn-table></jn-table> -->
       <jn-table
         :tableData="tableData"
@@ -23,8 +23,8 @@
         @row-click="rowClick"
         ref="jnTableRef"
         @selection-change="selectionChange"
-        cacheKey='tabssss'
-        >
+        cacheKey="tabssss"
+      >
         <!-- :showPagination="false" -->
         <!-- max-height="500" -->
         <template #expand="{ scope }">
@@ -34,10 +34,18 @@
           </el-row>
         </template>
         <template #handler="{ scope }">
-          <el-button link type="primary" size="small" @click="handlerEdit(scope)"
+          <el-button
+            link
+            type="primary"
+            size="small"
+            @click="handlerEdit(scope)"
             >编辑</el-button
           >
-          <el-button link type="danger" size="small" @click="handlerDelect(scope)"
+          <el-button
+            link
+            type="danger"
+            size="small"
+            @click="handlerDelect(scope)"
             >删除</el-button
           >
         </template>
@@ -48,7 +56,7 @@
 <script setup lang="ts">
 import { reactive, ref, onMounted } from 'vue'
 import { columns1 } from './config'
-console.log(columns1,'columns1')
+console.log(columns1, 'columns1')
 const columns = ref([
   { type: 'expand', label: '', slotName: 'expand' },
   { type: 'selection', label: '', reserveSelection: true },
@@ -161,6 +169,34 @@ const columns = ref([
   },
 ])
 
+// 动态更新列
+// setTimeout(() => {
+//   columns1.value = [
+//     {
+//       prop: 'address6',
+//       label: '地址6',
+//     },
+//     {
+//       prop: 'amount',
+//       label: '金额',
+//       // sortable: true,
+//       render: (val) => {
+//         return val
+//         // <jn-button type="primary">Primary</jn-button>
+//       },
+//     },
+//     {
+//       prop: 'handler',
+//       slotName: 'handler',
+//       label: '操作',
+//       align: 'center',
+//       showOverflowTooltip: true,
+//       fixed: 'right',
+//       minWidth: 220,
+//     },
+//   ]
+// }, 1000)
+
 const tableData = ref([])
 const loading = ref(false)
 let pageConfig = ref({
@@ -203,8 +239,7 @@ function fetchData() {
 function initData() {
   loading.value = true
   setTimeout(() => {
-    tableData.value = fetchData()
-    .slice(
+    tableData.value = fetchData().slice(
       (pageConfig.value.pageNum - 1) * pageConfig.value.pageSize,
       pageConfig.value.pageNum * pageConfig.value.pageSize
     )

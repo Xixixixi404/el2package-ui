@@ -133,6 +133,9 @@ const emit = defineEmits(['update:paginationConfig', 'changePage']) // 声明emi
 // const jnTableRef = ref<HTMLElement | null>(null) // 表格ref
 const jnTableRef = ref(null) // 表格ref
 
+// 列数据
+const tableColumn = ref([] as any[])
+
 const generateStorageKey = (cacheKey) =>
   location.pathname +
   location.hash +
@@ -161,44 +164,49 @@ function getTableColumnConfig(cacheKey, columns) {
 const columnConfig = ref(
   getTableColumnConfig(props.cacheKey, props.columns) || []
 )
+
 /** 获取表格列 */
-const tableColumn = computed(() => {
-  const flag = tableColumnConfig.value[generateStorageKey(props.cacheKey)]
-  const resultArr = flag
-    ? columnConfig.value.map((item2: any) => {
-        const matchingItem1 = props?.columns?.find((item1: any) => {
-          if (item2.prop) {
-            return item1.prop === item2.prop
-          } else if (item2.type) {
-            return item1.type === item2.type
+watch(
+  () => props.columns,
+  (n) => {
+    const flag = tableColumnConfig.value[generateStorageKey(props.cacheKey)]
+    const resultArr = flag
+      ? columnConfig.value.map((item2: any) => {
+          const matchingItem1 = props?.columns?.find((item1: any) => {
+            if (item2.prop) {
+              return item1.prop === item2.prop
+            } else if (item2.type) {
+              return item1.type === item2.type
+            }
+          })
+          if (matchingItem1) {
+            if (matchingItem1.type) {
+              return matchingItem1 // 直接复用整个对象
+            } else {
+              return {
+                ...item2, // 复用属性
+                ...matchingItem1,
+                fixed: matchingItem1.fixed, // 保持 arr1 中的 fixed 不变
+                checked: item2.checked,
+              }
+            }
+          } else {
+            return item2
           }
         })
-        if (matchingItem1) {
-          if (matchingItem1.type) {
-            return matchingItem1 // 直接复用整个对象
-          } else {
-            return {
-              ...item2, // 复用属性
-              ...matchingItem1,
-              fixed: matchingItem1.fixed, // 保持 arr1 中的 fixed 不变
-              checked: item2.checked,
-            }
-          }
-        } else {
-          return item2
-        }
-      })
-    : columnConfig.value
-  return resultArr.filter((obj) => obj.checked !== false)
-})
-
-watch(
-  () => columnConfig.value,
-  (val) => {
-    columnConfig.value = val
+      : n
+    tableColumn.value = resultArr.filter((obj) => obj.checked !== false)
   },
-  { deep: true }
+  { deep: true, immediate: true }
 )
+
+// watch(
+//   () => columnConfig.value,
+//   (val) => {
+//     columnConfig.value = val
+//   },
+//   { deep: true }
+// )
 
 // 合并分页配置
 const _paginationConfig = computed(() => {
