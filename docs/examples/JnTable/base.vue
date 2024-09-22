@@ -2,7 +2,7 @@
  * @Author: yangyu 1431330771@qq.com
  * @Date: 2023-09-19 11:45:27
  * @LastEditors: wangChao 6141364@qq.com
- * @LastEditTime: 2024-09-22 11:16:30
+ * @LastEditTime: 2024-09-22 16:04:21
  * @FilePath: \el2package-ui\docs\examples\JnTable\base.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -203,7 +203,7 @@ let pageConfig = ref({
   pageNum: 1,
   pageSize: 10,
   total: 0,
-  small: true,
+  size: 'small',
   background: true,
 })
 const jnTableRef = ref<HTMLElement | null>(null) // 表格ref

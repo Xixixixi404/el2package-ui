@@ -5,53 +5,54 @@
     :cacheKey="cacheKey"
     @setTableColumnConfig="setTableColumnConfig"
   ></jn-toolbar>
-  <!-- 数据表格 -->
-  <el-table
-    class="jn-table"
-    ref="jnTableRef"
-    :data="tableData"
-    v-bind="$attrs"
-    v-loading="loading"
-  >
-    <!-- 递归渲染多级表头 -->
-    <template v-for="(column, index) in tableColumn" :key="index">
-      <MultistageColumn
-        v-if="column.children && column.children.length"
-        :key="column.prop"
-        :column="column"
-      ></MultistageColumn>
-      <!-- :key="column.prop" -->
-      <el-table-column
-        v-else
-        v-bind="column"
-        :index="column.allSort ? typeIndex : undefined"
-      >
-        <template v-if="column.slotName" v-slot="scope">
-          <slot :name="column.slotName" :scope="scope"></slot>
-        </template>
-        <template v-if="column.render" v-slot="scope">
-          <RenderCol
-            :column="column"
-            :row="scope.row"
-            :render="column.render"
-            :index="scope.$index"
-          ></RenderCol>
-        </template>
-      </el-table-column>
-    </template>
-  </el-table>
-
-  <!-- 分页配置 -->
-  <div
-    class="pagination"
-    :style="{ justifyContent: paginationFloat }"
-    v-if="showPagination"
-  >
-    <Pagination
-      :pageConfig="_paginationConfig"
-      @size-change="pageSizeChange"
-      @current-change="currentPageChange"
-    ></Pagination>
+  <div class="jn-table-pagination">
+    <!-- 数据表格 -->
+    <el-table
+      class="jn-table"
+      ref="jnTableRef"
+      :data="tableData"
+      v-bind="$attrs"
+      v-loading="loading"
+    >
+      <!-- 递归渲染多级表头 -->
+      <template v-for="(column, index) in tableColumn" :key="index">
+        <MultistageColumn
+          v-if="column.children && column.children.length"
+          :key="column.prop"
+          :column="column"
+        ></MultistageColumn>
+        <!-- :key="column.prop" -->
+        <el-table-column
+          v-else
+          v-bind="column"
+          :index="column.allSort ? typeIndex : undefined"
+        >
+          <template v-if="column.slotName" v-slot="scope">
+            <slot :name="column.slotName" :scope="scope"></slot>
+          </template>
+          <template v-if="column.render" v-slot="scope">
+            <RenderCol
+              :column="column"
+              :row="scope.row"
+              :render="column.render"
+              :index="scope.$index"
+            ></RenderCol>
+          </template>
+        </el-table-column>
+      </template>
+    </el-table>
+    <!-- 分页配置 -->
+    <div
+      class="pagination"
+      :style="{ justifyContent: paginationFloat }"
+      v-if="showPagination"
+    >
+      <el-pagination
+        v-bind="_paginationConfig"
+        @size-change="pageSizeChange"
+        @current-change="currentPageChange"
+      ></el-pagination>
+    </div>
   </div>
 </template>
 <!-- <script lang="ts">
@@ -71,7 +72,7 @@ import {
 } from 'vue'
 import RenderCol from './renderCol.vue'
 import MultistageColumn from './MultistageColumn.vue' // 递归多级表头组件
-import Pagination from './Pagination.vue' // 分页组件
+
 // 定义组件接收的prop属性
 const props = defineProps({
   // 表格源数据
@@ -263,242 +264,248 @@ defineExpose({ element: jnTableRef })
 }
 </style>
 <style lang="scss" scoped>
-.jn-table {
-  z-index: 0;
-  background-color: var(--el-bg-color);
-  :deep(.el-table__header-wrapper) {
-    .el-table__header {
-      margin: 0;
-      overflow: unset;
-    }
-  }
-  :deep(.el-table__body-wrapper) {
-    .el-table__body {
-      margin: 0;
-      overflow: unset;
-      // th,
-      // td {
-      //   border: none !important;
-      // }
-    }
-  }
-  tr {
-    border: none;
-  }
-
-  :deep(.el-pagination) {
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 20px;
-    // margin-right: 60px;
-    margin-right: calc(2% - 20px);
+.jn-table-pagination {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  .jn-table {
+    z-index: 0;
     background-color: var(--el-bg-color);
-  }
-  // ttable过长省略号
-  .el-table {
-    .el-tooltip {
-      div {
-        -webkit-box-sizing: border-box;
-        box-sizing: border-box;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        word-break: break-all;
-        padding-left: 10px;
-        padding-right: 10px;
+    :deep(.el-table__header-wrapper) {
+      .el-table__header {
+        margin: 0;
+        overflow: unset;
       }
     }
-  }
-  // 某行隐藏复选框/单选框
-  .el-table {
-    .el-table__row {
-      :deep(.table_column_hidden) {
-        .cell {
-          .el-radio__input,
-          .el-checkbox__input {
-            display: none;
-          }
-
-          & > span {
-            display: none;
-          }
-        }
-      }
-    }
-  }
-
-  .el-table th,
-  .el-table td {
-    padding: 8px 0;
-  }
-
-  .el-table--border th:first-child .cell,
-  .el-table--border td:first-child .cell {
-    padding-left: 5px;
-  }
-
-  .el-table .cell {
-    padding: 0 5px;
-  }
-
-  .el-table--scrollable-y .el-table__fixed-right {
-    right: 8px !important;
-  }
-
-  .header_wrap {
-    display: flex;
-    align-items: center;
-
-    .toolbar_top {
-      flex: 0 70%;
-      display: flex;
-      padding: 10px 0;
-      align-items: center;
-      justify-content: flex-end;
-
-      .toolbar {
-        display: flex;
-        justify-content: flex-end;
-        width: 100%;
-      }
-
-      .el-button--small {
-        height: 32px;
-      }
-
-      .el-button--success {
-        background-color: #355db4;
-        border: 1px solid #355db4;
-      }
-    }
-
-    .header_title {
-      display: flex;
-      align-items: center;
-      flex: 0 30%;
-      padding: 10px 0;
-      font-size: 16px;
-      font-weight: bold;
-      line-height: 35px;
-      margin-left: 10px;
-      color: var(--el-text-color-primary);
-    }
-  }
-
-  .marginBttom {
-    margin-bottom: -8px;
-  }
-
-  // 单选样式
-  .radioStyle {
-    :deep(.el-radio) {
-      .el-radio__label {
-        display: none;
-      }
-
-      &:focus:not(.is-focus):not(:active):not(.is-disabled) .el-radio__inner {
-        box-shadow: none;
-      }
-    }
-
-    :deep(tbody) {
-      .el-table__row {
-        cursor: pointer;
-      }
-    }
-  }
-
-  // 复制功能样式
-  .cursor {
-    :deep(tbody) {
-      .el-table__row {
-        cursor: pointer;
-      }
-    }
-  }
-  // 行拖动
-  .row_sort {
-    :deep(tbody) {
-      .el-table__row {
-        cursor: move;
-      }
-    }
-  }
-
-  // 每行高度设置
-  .el-table {
-    .el-table__body {
-      .el-table__row {
-        :deep(.el-table__cell) {
-          padding: 8px 0;
-
-          .cell {
-            min-height: 32px;
-            line-height: 32px;
-            // display: flex;
-            // align-items: center;
-            // justify-content: center;
-          }
-        }
-      }
-    }
-  }
-  // treeTable样式
-  .tree_style {
     :deep(.el-table__body-wrapper) {
       .el-table__body {
-        .cell {
-          display: flex;
-          align-items: center;
-          .el-table__expand-icon {
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        margin: 0;
+        overflow: unset;
+        // th,
+        // td {
+        //   border: none !important;
+        // }
+      }
+    }
+    tr {
+      border: none;
+    }
+
+    :deep(.el-pagination) {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 20px;
+      // margin-right: 60px;
+      margin-right: calc(2% - 20px);
+      background-color: var(--el-bg-color);
+    }
+    // ttable过长省略号
+    .el-table {
+      .el-tooltip {
+        div {
+          -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          word-break: break-all;
+          padding-left: 10px;
+          padding-right: 10px;
+        }
+      }
+    }
+    // 某行隐藏复选框/单选框
+    .el-table {
+      .el-table__row {
+        :deep(.table_column_hidden) {
+          .cell {
+            .el-radio__input,
+            .el-checkbox__input {
+              display: none;
+            }
+
+            & > span {
+              display: none;
+            }
           }
         }
       }
     }
-  }
-  .operator {
-    // 操作样式
-    .operator_btn {
-      .el-button {
-        margin: 0;
-        margin-right: 10px;
+
+    .el-table th,
+    .el-table td {
+      padding: 8px 0;
+    }
+
+    .el-table--border th:first-child .cell,
+    .el-table--border td:first-child .cell {
+      padding-left: 5px;
+    }
+
+    .el-table .cell {
+      padding: 0 5px;
+    }
+
+    .el-table--scrollable-y .el-table__fixed-right {
+      right: 8px !important;
+    }
+
+    .header_wrap {
+      display: flex;
+      align-items: center;
+
+      .toolbar_top {
+        flex: 0 70%;
+        display: flex;
+        padding: 10px 0;
+        align-items: center;
+        justify-content: flex-end;
+
+        .toolbar {
+          display: flex;
+          justify-content: flex-end;
+          width: 100%;
+        }
+
+        .el-button--small {
+          height: 32px;
+        }
+
+        .el-button--success {
+          background-color: #355db4;
+          border: 1px solid #355db4;
+        }
+      }
+
+      .header_title {
+        display: flex;
+        align-items: center;
+        flex: 0 30%;
+        padding: 10px 0;
+        font-size: 16px;
+        font-weight: bold;
+        line-height: 35px;
+        margin-left: 10px;
+        color: var(--el-text-color-primary);
       }
     }
-  }
 
-  // 页面缓存时，表格内操作栏每行高度撑满
-  :deep(.el-table__fixed-right) {
-    height: 100% !important;
-  }
-
-  // 选中行样式
-  .highlightCurrentRow {
-    :deep(.current-row) {
-      color: var(--el-color-primary);
-      cursor: pointer;
-      background-color: #355db4 !important;
+    .marginBttom {
+      margin-bottom: -8px;
     }
-  }
 
-  .el-table--scrollable-y .el-table__body-wrapper {
-    overflow-x: auto;
-  }
+    // 单选样式
+    .radioStyle {
+      :deep(.el-radio) {
+        .el-radio__label {
+          display: none;
+        }
 
-  .handle_wrap {
-    position: sticky;
-    z-index: 10;
-    right: 0;
-    bottom: -8px;
-    margin: 0 -8px -8px;
-    padding: 12px 16px;
-    background-color: var(--el-bg-color);
-    border-top: 1px solid #ebeef5;
-    text-align: right;
+        &:focus:not(.is-focus):not(:active):not(.is-disabled) .el-radio__inner {
+          box-shadow: none;
+        }
+      }
 
-    .el-btn {
-      margin-left: 8px;
+      :deep(tbody) {
+        .el-table__row {
+          cursor: pointer;
+        }
+      }
+    }
+
+    // 复制功能样式
+    .cursor {
+      :deep(tbody) {
+        .el-table__row {
+          cursor: pointer;
+        }
+      }
+    }
+    // 行拖动
+    .row_sort {
+      :deep(tbody) {
+        .el-table__row {
+          cursor: move;
+        }
+      }
+    }
+
+    // 每行高度设置
+    .el-table {
+      .el-table__body {
+        .el-table__row {
+          :deep(.el-table__cell) {
+            padding: 8px 0;
+
+            .cell {
+              min-height: 32px;
+              line-height: 32px;
+              // display: flex;
+              // align-items: center;
+              // justify-content: center;
+            }
+          }
+        }
+      }
+    }
+    // treeTable样式
+    .tree_style {
+      :deep(.el-table__body-wrapper) {
+        .el-table__body {
+          .cell {
+            display: flex;
+            align-items: center;
+            .el-table__expand-icon {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            }
+          }
+        }
+      }
+    }
+    .operator {
+      // 操作样式
+      .operator_btn {
+        .el-button {
+          margin: 0;
+          margin-right: 10px;
+        }
+      }
+    }
+
+    // 页面缓存时，表格内操作栏每行高度撑满
+    :deep(.el-table__fixed-right) {
+      height: 100% !important;
+    }
+
+    // 选中行样式
+    .highlightCurrentRow {
+      :deep(.current-row) {
+        color: var(--el-color-primary);
+        cursor: pointer;
+        background-color: #355db4 !important;
+      }
+    }
+
+    .el-table--scrollable-y .el-table__body-wrapper {
+      overflow-x: auto;
+    }
+
+    .handle_wrap {
+      position: sticky;
+      z-index: 10;
+      right: 0;
+      bottom: -8px;
+      margin: 0 -8px -8px;
+      padding: 12px 16px;
+      background-color: var(--el-bg-color);
+      border-top: 1px solid #ebeef5;
+      text-align: right;
+
+      .el-btn {
+        margin-left: 8px;
+      }
     }
   }
 }
