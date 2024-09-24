@@ -15,12 +15,14 @@
       >
         <!-- 前置文本 -->
         <template #prepend v-if="configEdit.prepend">{{
-          configEdit.prepend
-        }}</template>
+            configEdit.prepend
+          }}
+        </template>
         <!-- 后置文本 -->
         <template #append v-if="configEdit.append">{{
-          configEdit.append
-        }}</template>
+            configEdit.append
+          }}
+        </template>
       </component>
       <!-- <el-upload
         v-if="configEdit.type === 'upload'"
@@ -58,18 +60,19 @@
         :label="compChildLabel(configEdit, child)"
         :value="compChildValue(configEdit, child, i)"
         :disabled="child?.disabled ?? props?.disabled"
-        >{{ child[configEdit.attrs?.props?.label || 'label'] }}
+      >{{ child[configEdit.attrs?.props?.label || 'label'] }}
       </component>
     </component>
   </div>
 </template>
 <script lang="ts">
 export default {
-  name: 'SingleEditCell',
+  name: 'SingleEditCell'
 }
 </script>
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
+
 const props = defineProps({
   /** 编辑配置项说明
    * label: '爱好', // placeholder显示
@@ -82,21 +85,21 @@ const props = defineProps({
    */
   configEdit: {
     type: Object,
-    default: () => ({}),
+    default: () => ({})
   },
   formData: {
     type: Object,
-    default: () => ({}),
+    default: () => ({})
   },
   scope: {
     type: Object,
-    default: {},
+    default: {}
   },
   prop: {
     type: String,
-    default: '',
+    default: ''
   },
-  disabled: {},
+  disabled: {}
   // modelValue: {
   //   type: [String, Number, Array, Boolean],
   // },
@@ -130,18 +133,18 @@ const cAttrs = computed(() => {
     const itemAttrs =
       typeof item.attrs == 'function'
         ? {
-            ...item.attrs({ row: props.scope.row, formData: props.formData }),
-            disabled: props?.disabled
-              ? true
-              : item.attrs({ row: props.scope.row, formData: props.formData })
-                  ?.disabled,
-          }
+          ...item.attrs({ row: props.scope.row, formData: props.formData }),
+          disabled: props?.disabled
+            ? true
+            : item.attrs({ row: props.scope.row, formData: props.formData })
+              ?.disabled
+        }
         : {
-            clearable: false,
-            filterable: true,
-            disabled: item.attrs?.disabled ?? props?.disabled,
-            ...item.attrs,
-          }
+          clearable: false,
+          filterable: true,
+          disabled: item.attrs?.disabled ?? props?.disabled,
+          ...item.attrs
+        }
     return itemAttrs
   }
 })
@@ -232,6 +235,7 @@ const handleEvent = (type, val, editCom) => {
 </script>
 <style lang="scss">
 .single_edit_cell {
+  width: 100%;
   cursor: pointer;
 }
 </style>
