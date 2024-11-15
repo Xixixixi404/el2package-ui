@@ -6,6 +6,7 @@
       :rowsTotal="props.rowsTotal"
       :formOpts="props.searchParamet"
       v-model="searchValue"
+      v-bind="$attrs"
     >
       <!-- v-model="formData" -->
       <!-- :inline="true" -->
@@ -27,8 +28,8 @@
             <ArrowDown v-if="!subListOpenFlag" />
             <ArrowUp v-else />
           </el-icon>
-          {{ !subListOpenFlag ? '展开' : '收起' }}</jn-button
-        >
+          {{ !subListOpenFlag ? '展开' : '收起' }}
+        </jn-button>
       </template>
     </jn-form>
   </div>
