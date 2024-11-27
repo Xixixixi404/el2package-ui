@@ -2,7 +2,7 @@
  * @Author: yangyu 1431330771@qq.com
  * @Date: 2023-09-19 11:45:27
  * @LastEditors: wangChao 6141364@qq.com
- * @LastEditTime: 2024-08-12 09:56:06
+ * @LastEditTime: 2024-11-27 15:02:43
  * @FilePath: \el2package-ui\docs\examples\JnForm\base.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -95,7 +95,8 @@ const remoteMethod = (query: string) => {
 const formOptions = ref({
   title: {
     type: 'title',
-    label: '订单详细信息',
+    // hidden: true,
+    label: '订单详细信息111',
     colSize: 24,
     attrs: {
       isShowExpand: true,

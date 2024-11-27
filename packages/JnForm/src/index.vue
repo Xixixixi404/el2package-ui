@@ -2,7 +2,7 @@
  * @Author: yangyu 1431330771@qq.com
  * @Date: 2023-06-16 15:13:51
  * @LastEditors: wangChao 6141364@qq.com
- * @LastEditTime: 2024-11-27 09:17:35
+ * @LastEditTime: 2024-11-27 15:02:27
  * @FilePath: \el2package-ui\packages\JnForm\src\index.vue
  * @Description: 封装表单jnf-form
 -->
@@ -17,7 +17,12 @@
     :validate-on-rule-change="false"
   >
     <template v-for="(list, index) in formOptsCopy">
-      <div :class="isShowInfo ? 'item-row' : ''">
+      <div
+        v-show="
+          list[0] ? (list[0].config ? !list[0].config?.hidden : true) : true
+        "
+        :class="isShowInfo ? 'item-row' : ''"
+      >
         <el-row class="demo-autocomplete">
           <template v-for="(items, key) in list">
             <template v-for="(item, key) in items" :key="key">
@@ -297,6 +302,7 @@ let editorVal = ref('')
 let formOptsCopy = ref<any>([])
 
 let isShowInfo = ref(false)
+let isHidden = ref(false)
 let isMethodCalled = ref(false)
 /**
  * @description: 初始化菜单
@@ -333,6 +339,15 @@ const initForm = async ({ formData: data = {}, type }) => {
       }
       let newObj = {}
       newObj[key] = formSchema[key]
+
+      // 如果title内配置了隐藏该列 则 新增一条配置项
+      if (formSchema[key]?.hidden) {
+        newArr.push({
+          config: {
+            hidden: true,
+          },
+        })
+      }
       newArr.push(newObj)
     } else {
       let newObj = {}
