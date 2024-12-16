@@ -2,7 +2,7 @@
  * @Author: yangyu 1431330771@qq.com
  * @Date: 2023-09-19 11:45:27
  * @LastEditors: wangChao 6141364@qq.com
- * @LastEditTime: 2024-12-16 14:00:31
+ * @LastEditTime: 2024-12-16 14:07:10
  * @FilePath: \el2package-ui\docs\examples\JnTableSearch\base.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -12,6 +12,7 @@
       <jn-table-search
         :searchParamet="formOptions"
         :rowsTotal="1"
+        :customCol="true"
         @search="search"
         :formData="searchValue"
         label-width="120px"

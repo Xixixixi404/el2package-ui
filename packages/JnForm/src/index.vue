@@ -2,7 +2,7 @@
  * @Author: yangyu 1431330771@qq.com
  * @Date: 2023-06-16 15:13:51
  * @LastEditors: wangChao 6141364@qq.com
- * @LastEditTime: 2024-12-16 14:00:49
+ * @LastEditTime: 2024-12-16 14:24:37
  * @FilePath: \el2package-ui\packages\JnForm\src\index.vue
  * @Description: 封装表单jnf-form
 -->
@@ -130,11 +130,6 @@
         </el-row>
       </div>
     </template>
-    <el-input-number v-model="num" :min="1" :max="10">
-      <template #suffix>
-        <span>RMB</span>
-      </template>
-    </el-input-number>
     <!-- <el-form-item v-if="!isSearch">
       <slot name="action" :form="form" :model="modelValue"></slot>
     </el-form-item> -->
