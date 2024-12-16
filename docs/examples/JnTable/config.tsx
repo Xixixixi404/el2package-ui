@@ -17,6 +17,7 @@
 //   amount: Number
 // }
 import { ref, onMounted } from 'vue'
+const a = ref('')
 // 表格列配置
 export const columns1 = ref([
   { type: 'expand', label: '', slotName: 'expand' },
@@ -49,16 +50,19 @@ export const columns1 = ref([
     //   return row[property] === value
     // },
     fit: true,
-    width:300,
+    width: 300,
     // slotName: "name",
-    render: (val) => {
-      return <el-tag type="success">{val}</el-tag>
+    header: (val) => {
+      return <el-input v-model={a.value}></el-input>
     },
   },
   {
     fit: false,
     prop: 'name1',
     label: '地址',
+    header: (val) => {
+      return <el-input v-model={a.value}></el-input>
+    },
     // children: [
     //     {
     //         label: '省份',

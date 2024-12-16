@@ -27,6 +27,11 @@
           v-bind="column"
           :index="column.allSort ? typeIndex : undefined"
         >
+          <template v-if="column.header" #header>
+            <component
+            :is="column.header"
+            ></component>
+          </template>
           <template v-if="column.slotName" v-slot="scope">
             <slot :name="column.slotName" :scope="scope"></slot>
           </template>

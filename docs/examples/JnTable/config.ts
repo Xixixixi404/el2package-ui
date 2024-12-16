@@ -2,7 +2,7 @@
  * @Author: yangyu 1431330771@qq.com
  * @Date: 2023-08-31 09:20:56
  * @LastEditors: wangChao 6141364@qq.com
- * @LastEditTime: 2024-09-02 11:21:53
+ * @LastEditTime: 2024-12-16 15:30:32
  * @FilePath: \el2package-ui\docs\examples\JnTable\config.ts
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -16,7 +16,7 @@
 //   county: string
 //   amount: Number
 // }
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, h } from 'vue'
 // 表格列配置
 export const columns1 = ref([
   { type: 'expand', label: '', slotName: 'expand' },
@@ -50,7 +50,6 @@ export const columns1 = ref([
     // },
     showOverflowTooltip: false,
     fit: true,
-    // slotName: "name",
     render: (val) => {
       return val
 
