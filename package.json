@@ -1,6 +1,6 @@
 {
   "name": "el2package-ui",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "description": "Vue3 中基于Element-plus二次封装基础组件文档",
   "author": "yangyu",
   "license": "ISC",
@@ -36,7 +36,7 @@
     "axios": "^1.1.2",
     "chalk": "^5.2.0",
     "consola": "^3.1.0",
-    "element-plus": "^2.7.7",
+    "element-plus": "^2.9.0",
     "escape-html": "^1.0.3",
     "eslint": "^8.25.0",
     "eslint-config-prettier": "^8.5.0",

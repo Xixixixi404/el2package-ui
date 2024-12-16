@@ -5,31 +5,34 @@
       isSearch
       :rowsTotal="props.rowsTotal"
       :formOpts="props.searchParamet"
+      :customCol="props.customCol"
       v-model="searchValue"
       v-bind="$attrs"
     >
       <!-- v-model="formData" -->
       <!-- :inline="true" -->
       <template #searchAction="scope">
-        <jn-button
-          type="primary"
-          icon="Search"
-          @click="handleSearch(scope.model)"
-          >查询</jn-button
-        >
-        <jn-button icon="Refresh" @click="resetSearchForm">重置</jn-button>
-        <jn-button
-          type="primary"
-          v-if="!scope.isShowExpand"
-          link
-          @click="changeExpand"
-        >
-          <el-icon>
-            <ArrowDown v-if="!subListOpenFlag" />
-            <ArrowUp v-else />
-          </el-icon>
-          {{ !subListOpenFlag ? '展开' : '收起' }}
-        </jn-button>
+        <div style="margin-bottom: 10px;">
+          <jn-button
+            type="primary"
+            icon="Search"
+            @click="handleSearch(scope.model)"
+            >查询</jn-button
+          >
+          <jn-button icon="Refresh" @click="resetSearchForm">重置</jn-button>
+          <jn-button
+            type="primary"
+            v-if="!scope.isShowExpand"
+            link
+            @click="changeExpand"
+          >
+            <el-icon>
+              <ArrowDown v-if="!subListOpenFlag" />
+              <ArrowUp v-else />
+            </el-icon>
+            {{ !subListOpenFlag ? '展开' : '收起' }}
+          </jn-button>
+        </div>
       </template>
     </jn-form>
   </div>
@@ -55,7 +58,12 @@ let props = defineProps({
     type: Object,
     default: () => {},
   },
+  customCol: {
+    type: Boolean,
+    default: false
+  }
 })
+
 const $emit = defineEmits([
   /**
    * 搜索
@@ -79,6 +87,8 @@ const changeExpand = () => {
   subListOpenFlag.value = !subListOpenFlag.value
   searchFormRef.value.calculateShowCol(subListOpenFlag.value)
 }
+
+
 
 /** 重置 */
 const resetSearchForm = () => {
