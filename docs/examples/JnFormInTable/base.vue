@@ -1,9 +1,9 @@
 <!--
  * @Author: yangyu 1431330771@qq.com
  * @Date: 2023-09-19 11:45:27
- * @LastEditors: wangchao 6141364@qq.com
- * @LastEditTime: 2024-06-27 13:05:48
- * @FilePath: \jnf-ui\docs\examples\JnFormInTable\base.vue
+ * @LastEditors: wangChao 6141364@qq.com
+ * @LastEditTime: 2024-12-20 16:15:42
+ * @FilePath: \el2package-ui\docs\examples\JnFormInTable\base.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
 <template>
@@ -30,7 +30,8 @@
             <!-- area1 -->
             <template #area1="{ itemData }">
               <!-- <div>{{ itemData }}</div> -->
-              {{ itemData }}wqqe3111111111111111111312313
+              <!-- {{ itemData }}wqqe3111111111111111111312313 -->
+              <el-input v-model="itemData.area1"></el-input>
             </template>
             <!-- v-model:paginationConfig="pageConfig" -->
             <!-- <template #actionArea="{ itemData }">
@@ -342,6 +343,11 @@ const tableOptions = ref([
     configEdit: {
       type: 'input',
       attrs: {},
+      rules: [{
+        required: true,
+        message: 'aaaaaa',
+        trigger: 'blur',
+      }]
     },
     slotName: 'area1',
   },

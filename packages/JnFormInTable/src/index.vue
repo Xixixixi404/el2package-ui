@@ -37,17 +37,16 @@
         <template #default="scope">
           <el-form-item label="" label-width="0" :prop="[ruleKey, scope.$index, column.prop]"
             :rules="column.configEdit?.rules" class="table-form-item">
+            {{ [ruleKey, scope.$index, column.prop] }}
             <!-- style="margin-top: 18px" -->
             <template v-if="column.slotName">
-              <slot :name="column.slotName" :item-data="scope.row" :idx="scope.$index"
-                :disabled="column?.configEdit?.attrs?.disabled"></slot>
+              <slot :name="column.slotName" :item-data="scope.row" :idx="scope.$index" :disabled="column?.configEdit?.attrs?.disabled"></slot>
             </template>
             <template v-else-if="column.render">
               <RenderCol :column="column" :row="scope.row" :render="column.render" :index="scope.$index"></RenderCol>
             </template>
             <!-- 单个单元格编辑 -->
-            <template v-else-if="column?.hasOwnProperty('configEdit') && !column.slotName
-    ">
+            <template v-else-if="column?.hasOwnProperty('configEdit') && !column.slotName">
               <single-edit-cell :configEdit="column.configEdit" v-model="scope.row![column.prop!]" :prop="column.prop"
                 :scope="scope" :formData="formData" :disabled="disabled" v-bind="$attrs" ref="editCell">
                 <slot v-if="column.configEdit && column.configEdit.editSlotName" :name="column.configEdit.editSlotName"
@@ -55,10 +54,10 @@
               </single-edit-cell>
             </template>
             <div v-else-if="!column?.hasOwnProperty('configEdit') && !column.slotName
-    " class="text" :class="column?.columnConfig?.align
-    ? `is-${column.columnConfig.align}`
-    : ''
-    ">
+              " class="text" :class="column?.columnConfig?.align
+              ? `is-${column.columnConfig.align}`
+              : ''
+              ">
               {{ scope.row[column.prop] }}
               <!-- <div>{{ scope.row[column.prop] }}</div> -->
             </div>

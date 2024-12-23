@@ -2,7 +2,7 @@
  * @Author: yangyu 1431330771@qq.com
  * @Date: 2023-06-16 15:13:51
  * @LastEditors: wangChao 6141364@qq.com
- * @LastEditTime: 2024-12-16 14:24:37
+ * @LastEditTime: 2024-12-23 13:15:31
  * @FilePath: \el2package-ui\packages\JnForm\src\index.vue
  * @Description: 封装表单jnf-form
 -->
@@ -72,7 +72,10 @@
                         :placeholder="item.placeholder"
                         v-on="cEvent(item)"
                       >
-                      </component>
+                      <template #[item?.attrs?.slot?.name]>
+                        <component :is="item?.attrs?.slot?.render"></component>
+                      </template>
+                    </component>
                       <el-upload
                         v-if="item.type === 'upload'"
                         v-bind="item.uploadAttrs"
@@ -473,6 +476,14 @@ const compChildLabel = computed(() => {
 //     }
 //   }
 // })
+const cSlots = (slot) => {
+  if(slot) {
+    let slotOption = {}
+    slotOption[slot.name] = slot.render
+    return slotOption
+  }
+}
+
 // 参数配置
 const cAttrs = computed(() => {
   return (item: any) => {
