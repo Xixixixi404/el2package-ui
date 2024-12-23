@@ -37,7 +37,6 @@
         <template #default="scope">
           <el-form-item label="" label-width="0" :prop="[ruleKey, scope.$index, column.prop]"
             :rules="column.configEdit?.rules" class="table-form-item">
-            {{ [ruleKey, scope.$index, column.prop] }}
             <!-- style="margin-top: 18px" -->
             <template v-if="column.slotName">
               <slot :name="column.slotName" :item-data="scope.row" :idx="scope.$index" :disabled="column?.configEdit?.attrs?.disabled"></slot>
