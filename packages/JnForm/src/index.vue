@@ -2,7 +2,7 @@
  * @Author: yangyu 1431330771@qq.com
  * @Date: 2023-06-16 15:13:51
  * @LastEditors: wangChao 6141364@qq.com
- * @LastEditTime: 2024-12-23 13:15:31
+ * @LastEditTime: 2024-12-23 13:50:34
  * @FilePath: \el2package-ui\packages\JnForm\src\index.vue
  * @Description: 封装表单jnf-form
 -->
@@ -309,6 +309,7 @@ let formOptsCopy = ref<any>([])
 let isShowInfo = ref(false)
 let isHidden = ref(false)
 let isMethodCalled = ref(false)
+
 /**
  * @description: 初始化菜单
  * @param {*} fromData : 表单绑定的数据
@@ -330,7 +331,7 @@ const initForm = async ({ formData: data = {}, type }) => {
   Object.keys(formSchema).forEach((key, index) => {
     rules.value[key] = [
       {
-        trigger: 'blur',
+        trigger: formSchema[key]?.type && formSchema[key]?.type.indexOf('input') > -1 ? 'blur': 'change',
         required: props.disabled ? false : formSchema[key].required,
         message: (formSchema[key].label || '此项') + '是必填项',
       },
