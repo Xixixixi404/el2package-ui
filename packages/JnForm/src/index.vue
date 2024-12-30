@@ -2,7 +2,7 @@
  * @Author: yangyu 1431330771@qq.com
  * @Date: 2023-06-16 15:13:51
  * @LastEditors: wangChao 6141364@qq.com
- * @LastEditTime: 2024-12-23 13:50:34
+ * @LastEditTime: 2024-12-30 13:14:50
  * @FilePath: \el2package-ui\packages\JnForm\src\index.vue
  * @Description: 封装表单jnf-form
 -->
@@ -514,7 +514,7 @@ const cEvent = computed(() => {
     let changeEvent = {}
     Object.keys(event).forEach((v) => {
       changeEvent[v] = (e = undefined) => {
-        event[v] && event[v](e, props.modelValue)
+        event[v] && event[v](e, props.modelValue, props.formOpts)
       }
     })
     return { ...changeEvent }
