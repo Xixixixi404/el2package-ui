@@ -4,12 +4,13 @@ const changeSaleOrg = (e, row) => {
   row.saleCountry = '31312321'
   row.saleGroup = e
 }
+
 export const formOptions = ref({
   title: {
     type: 'title',
     label: '基础数据信息',
     colSize: 24,
-    attrs: {},
+    attrs: {}
   },
   saleOrg: {
     type: 'select',
@@ -20,10 +21,10 @@ export const formOptions = ref({
     colSize: 24,
     attrs: {
       childType: 'option',
-      clearable: true,
+      clearable: true
     },
     events: {
-      change: ($event, val) => changeSaleOrg($event, val),
+      change: ($event, val) => changeSaleOrg($event, val)
       // focus: ($event, row) => focus($event, row),
       // blur: ($event, row) => blur($event, row),
     },
@@ -31,17 +32,17 @@ export const formOptions = ref({
     children: [
       {
         label: '前纺一车间',
-        value: 'W1',
+        value: 'W1'
       },
       {
         label: '前纺二车间',
-        value: 'W2',
+        value: 'W2'
       },
       {
         label: '前纺三车间',
-        value: 'W3',
-      },
-    ],
+        value: 'W3'
+      }
+    ]
   },
   saleDeptCode: {
     type: 'select',
@@ -58,13 +59,13 @@ export const formOptions = ref({
       defaultFirstOption: true,
       props: {
         label: 'saleDeptCode',
-        value: 'saleDeptCode',
-      },
+        value: 'saleDeptCode'
+      }
     },
     events: {
-      change: null,
+      change: null
     },
-    children: [],
+    children: []
   },
   saleDept: {
     type: 'input',
@@ -75,11 +76,10 @@ export const formOptions = ref({
     colSize: 24,
     attrs: (row) => {
       return {
-        disabled:
-          row.saleDeptCode == null || row.saleDeptCode == '' ? true : false,
+        disabled: row.saleDeptCode == null || row.saleDeptCode == '' ? true : false
         // colProp: 24,
       }
-    },
+    }
   },
   saleGroupCode: {
     type: 'select',
@@ -96,13 +96,13 @@ export const formOptions = ref({
       defaultFirstOption: true,
       props: {
         label: 'saleGroupCode',
-        value: 'saleGroupCode',
-      },
+        value: 'saleGroupCode'
+      }
     },
     events: {
-      change: null,
+      change: null
     },
-    children: [],
+    children: []
   },
   saleGroup: {
     type: 'input',
@@ -112,8 +112,8 @@ export const formOptions = ref({
     rules: [],
     colSize: 24,
     attrs: {
-      clearable: true,
-    },
+      clearable: true
+    }
   },
   saleCountry: {
     type: 'select',
@@ -127,9 +127,9 @@ export const formOptions = ref({
       clearable: true,
       props: {
         label: 'name',
-        value: 'name',
-      },
+        value: 'name'
+      }
     },
-    children: [],
-  },
+    children: []
+  }
 })
