@@ -1,9 +1,9 @@
 /*
  * @Author: yangyu 1431330771@qq.com
  * @Date: 2023-09-04 23:53:52
- * @LastEditors: yangyu 1431330771@qq.com
- * @LastEditTime: 2023-10-09 15:50:38
- * @FilePath: \jnf-ui-master\docs\.vitepress\config.ts
+ * @LastEditors: wangChao 6141364@qq.com
+ * @LastEditTime: 2025-01-08 15:18:45
+ * @FilePath: \el2package-ui\docs\.vitepress\config.ts
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
 import { defineConfig } from 'vitepress'
@@ -22,9 +22,9 @@ export default defineConfig({
     nav: [
       {
         text: '安装指南',
-        link: '/components/',
+        link: '/components/'
       },
-      { text: '基础组件', link: '/components/JnSelect/base.md' },
+      { text: '基础组件', link: '/components/JnSelect/base.md' }
     ],
     sidebar: {
       '/components': [
@@ -33,36 +33,35 @@ export default defineConfig({
           items: [
             { text: 'jnf下拉选择组件', link: '/components/JnSelect/base.md' },
             { text: 'jnf详情组件', link: '/components/JnDetail/base.md' },
-            { text: 'jnf按钮组件', link: '/components/JnButton/base.md' },
-          ],
+            { text: 'jnf按钮组件', link: '/components/JnButton/base.md' }
+          ]
         },
         {
           text: '复杂组件',
           items: [
             {
               text: 'jnf条件查询组件',
-              link: '/components/JnTableSearch/base.md',
+              link: '/components/JnTableSearch/base.md'
             },
             { text: 'jnf表单组件', link: '/components/JnForm/base.md' },
             { text: 'jnf-table表格组件', link: '/components/JnTable/base.md' },
             {
               text: 'jnf-form-table表单中可编辑table组件',
-              link: '/components/JnFormInTable/base.md',
+              link: '/components/JnFormInTable/base.md'
             },
             { text: 'jn-file-upload文件上传组件', link: '/components/JnFileUpload/base.md' },
-            { text: 'jn-toolbar表格自定义列组件', link: '/components/JnToolbar/base.md' },
-
-          ],
-        },
-      ],
-    },
+            { text: 'jn-toolbar表格自定义列组件', link: '/components/JnToolbar/base.md' }
+          ]
+        }
+      ]
+    }
   },
   markdown: {
     headers: {
-      level: [0, 0],
+      level: [0, 0]
     },
     // light: #f9fafb, dark: --vp-code-block-bg
     theme: { light: 'github-light', dark: 'github-dark' },
-    config: (md) => mdPlugin(md),
-  },
+    config: (md) => mdPlugin(md)
+  }
 })

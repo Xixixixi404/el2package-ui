@@ -11,5 +11,6 @@
     "noImplicitAny": false,
     "skipLibCheck": true,
     "jsx": "preserve",
+    "types": ["vite/client"]
   }
 }

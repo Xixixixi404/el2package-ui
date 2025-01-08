@@ -1,9 +1,9 @@
 /*
  * @Author: yangyu 1431330771@qq.com
  * @Date: 2023-09-04 23:53:52
- * @LastEditors: yangyu 1431330771@qq.com
- * @LastEditTime: 2023-09-21 16:35:50
- * @FilePath: \jnf-ui-master\vite.config.ts
+ * @LastEditors: wangChao 6141364@qq.com
+ * @LastEditTime: 2025-01-08 14:39:04
+ * @FilePath: \el2package-ui\vite.config.ts
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
 import { defineConfig } from 'vite'
@@ -11,16 +11,17 @@ import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import { resolve } from 'path'
 import vueSetupExtend from 'vite-plugin-vue-setup-extend' // 设置neme属性
-// import AutoImport from 'unplugin-auto-import/vite' // 自动导入
+import AutoImport from 'unplugin-auto-import/vite' // 自动导入
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+
 import viteCompression from 'vite-plugin-compression' // 静态资源压缩
 // import {visualizer} from 'rollup-plugin-visualizer' // 打包后的视图文件
-import dts from 'vite-plugin-dts'
+// import dts from 'vite-plugin-dts'
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     vue(),
-    dts(),
     vueJsx(),
     vueSetupExtend(),
     viteCompression({
@@ -29,8 +30,17 @@ export default defineConfig({
       deleteOriginFile: false, // 压缩后是否删除原文件
       threshold: 10240, // 压缩前最小文件大小
       algorithm: 'gzip', // 压缩算法
-      ext: '.gz', // 文件类型
+      ext: '.gz' // 文件类型
     }),
+    AutoImport({
+      dirs: ['./src/hooks'], // 用户模块
+      resolvers: [ElementPlusResolver()],
+      include: [/\.[tj]sx?$/, /\.vue$/, /\.vue\?vue/, /\.md$/],
+      imports: ['vue', 'vue-router', 'pinia', '@vueuse/core'],
+      //注意这个配置和src同级
+      // dts: false // 使用ts时关闭
+      dts: './auto-imports.d.ts'
+    })
     // visualizer({
     //   open:true,  //注意这里要设置为true，否则无效
     //   gzipSize:true,
@@ -41,7 +51,6 @@ export default defineConfig({
     host: '0.0.0.0',
     port: 3300,
     open: true,
-    https: false,
     proxy: {
       // '^/mes': {
       //   target: `http://10.0.10.243:5000/mesv2/`,
@@ -58,16 +67,16 @@ export default defineConfig({
       //   changeOrigin: true,
       //   rewrite: (p) => p.replace(/^\/portal-sso/, '/portal-sso'),
       // },
-    },
+    }
   },
   resolve: {
     // 配置别名
     alias: {
       // '@': resolve(__dirname, 'examples'),
-      '@': resolve(__dirname, 'packages'),
+      '@': resolve(__dirname, 'packages')
     },
     // 类型： string[] 导入时想要省略的扩展名列表。
-    extensions: ['.js', '.ts', '.jsx', '.tsx', '.json', '.vue', '.mjs'],
+    extensions: ['.js', '.ts', '.jsx', '.tsx', '.json', '.vue', '.mjs']
   },
   build: {
     outDir: 'lib',
@@ -78,16 +87,23 @@ export default defineConfig({
       output: {
         // 在 UMD 构建模式下为这些外部化的依赖提供一个全局变量
         globals: {
-          vue: 'Vue',
-        },
-      },
+          vue: 'Vue'
+        }
+      }
     },
     lib: {
       // entry: resolve(__dirname, 'packages/index.ts'),
       entry: './packages/index.ts',
       name: 'el2package-ui',
       // formats: ['es', 'cjs'],
-      fileName: 'el2package-ui',
-    },
+      fileName: 'el2package-ui'
+    }
   },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        api: 'modern-compiler' // or 'modern'
+      }
+    }
+  }
 })
