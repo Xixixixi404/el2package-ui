@@ -3,7 +3,7 @@
     ref="subListRef"
     class="subList"
   >
-    <jn-form
+    <el2-form
       ref="searchFormRef"
       v-model="searchValue"
       isSearch
@@ -40,7 +40,7 @@
           {{ !subListOpenFlag ? '展开' : '收起' }}
         </el2-button>
       </template>
-    </jn-form>
+    </el2-form>
   </div>
 </template>
 

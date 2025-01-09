@@ -14,9 +14,9 @@ import TLayoutPageItem from './layout-page-item'
 import El2Button from './Button'
 import El2Select from './Select'
 import El2TableSearch from './TableSearch'
+import El2Form from './Form'
 
 import JnDetail from './JnDetail'
-import JnForm from './JnForm'
 import JnTable from './JnTable'
 import JnFormTable from './JnFormInTable'
 import JnFileUpload from './JnFileUpload'
@@ -32,9 +32,9 @@ const components: {
   El2Button,
   El2Select,
   El2TableSearch,
+  El2Form,
 
   JnDetail,
-  JnForm,
   JnTable,
   JnFormTable,
   JnFileUpload,
@@ -69,8 +69,8 @@ export {
   El2Button,
   El2Select,
   El2TableSearch,
+  El2Form,
   JnDetail,
-  JnForm,
   JnTable,
   JnFormTable,
   JnFileUpload,
