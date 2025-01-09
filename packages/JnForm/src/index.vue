@@ -1,11 +1,3 @@
-<!--
- * @Author: yangyu 1431330771@qq.com
- * @Date: 2023-06-16 15:13:51
- * @LastEditors: wangChao 6141364@qq.com
- * @LastEditTime: 2025-01-09 15:54:30
- * @FilePath: \el2package-ui\packages\JnForm\src\index.vue
- * @Description: 封装表单jnf-form
--->
 <template>
   <el-form
     v-if="modelValue"
@@ -607,7 +599,7 @@
 
     // 新版title样式
     .secondary-tit {
-      width: 100%;
+      width: 100%
       padding: 0 12px;
       font-size: 16px;
       line-height: 42px;
