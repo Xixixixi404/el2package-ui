@@ -1,56 +1,54 @@
 ---
 layout: home
 
-title: jnf-ui
+title: 基于Element-plus封装
 # titleTemplate: 选项卡描述
 editLink: true
 lastUpdated: true
 hero:
-  name: jnf-ui
-  text: vue3基础组件
-  tagline: Vue3 中基于Element-plus二次封装基础组件文档
+  name: El2package-UI
+  text: Vue3 管理端<br/>基础组件库
+  tagline: 基于Element-plus二次封装 —— 基础组件文档
   image:
-    src: /img/home.png
-    alt: jnf-ui
+    # src: /img/home.png
+    alt: el2package-UI
   actions:
     - theme: brand
       text: 安装指南
-      link: /components/
+      link: /guide/
     - theme: brand
       text: 组件预览
-      link: /components/JnSelect/base.md
+      link: /components/Button/base.md
 features:
-  # - icon: 🔨
-  #   title: 实际项目
-  #   details: 实际项目中碰到的疑点、难点，致力于更优的自我。。
-  - icon: 🧩
-    title: 基础组件
-    details: 基于Element-plus二次封装；使用组件 Demo 快速体验交互细节。。
-  - icon: ✈️
-    title: Vue驱动。
-    details: 享受 Vue3 + vite3 的开发体验，在 Markdown 中使用 Vue 组件，同时可以使用 Vue 来开发自定义主题。
+  - icon:
+      src: /img/element-plus-logo.svg
+      width: 40px
+      height: 40px
+    title: Element Plus
+    details: 基于 Vue 3，面向设计师和开发者的组件库
+    linkText: 一个 Vue 3 UI 框架
+    link: https://element-plus.org/zh-CN/
+  - icon:
+      src: /img/vue-logo.svg
+      width: 40px
+      height: 40px
+    title: Vue 3 驱动。
+    details: 享受 Vue3 + vite6 快速开发体验。
+    link: https://vuejs.org
+  - icon:
+      src: /img/SVG图像20250108163354.svg
+      width: 40px
+      height: 40px
+    title: El2package-UI
+    details: 基于Element-plus二次封装<br/>管理端页面快速开发
 ---
 
-<!-- <p style="display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 10px;">
-  <a href="https://github.com/vuejs/vue" target="_blank">
-    <img src="https://img.shields.io/badge/vue-3.2.36-brightgreen.svg" alt="vue3">
-  </a>
-  <a href="https://gitee.com/wocwin/jnf-ui/stargazers" target="_blank">
-    <img src="https://gitee.com/wocwin/jnf-ui/badge/star.svg?theme=dark" alt="jnf-ui">
-  </a>
-  <a href="https://github.com/wocwin/jnf-ui/stargazers" target="_blank">
-    <img src="https://img.shields.io/github/stars/wocwin/jnf-ui.svg" alt="jnf-ui">
-  </a>
-   <a href="https://www.npmjs.com/package/@wocwin/jnf-ui" target="_blank">
-      <img alt="npm" src="https://img.shields.io/npm/v/@wocwin/jnf-ui.svg" />
-    </a>
-</p>
-<h1 style="text-align: center;">Thanks to all the contributors!</h1>
-<p style="display: flex;justify-content: center;align-items: center;margin-top: 10px;">
-  <a href="https://github.com/wocwin/jnf-ui/graphs/contributors">
-    <img src="https://contrib.rocks/image?repo=wocwin/jnf-ui" alt="contributors" />
-  </a>
-</p> -->
+<!--
+ * @Description: 默认布局插槽 详情见 https://vitejs.cn/vitepress/guide/extending-default-theme#registering-global-components
+ * @Author: wangChao 6141364@qq.com
+ * @Date: 2024-06-27 11:11:04
+ * @LastEditors: wangChao 6141364@qq.com
+ * @LastEditTime: 2025-01-08 16:47:31
+ * @FilePath: \el2package-ui\docs\index.md
+ * Endless Story. - NANA
+-->

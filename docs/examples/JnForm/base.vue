@@ -9,7 +9,7 @@
 <template>
   <t-layout-page>
     <t-layout-page-item>
-      <jn-button @click="open">打开</jn-button>
+      <el2-button @click="open">打开</el2-button>
       <el-dialog
         v-model="dialogSelectEnt"
         :title="'212123'"

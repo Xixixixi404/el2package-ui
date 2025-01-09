@@ -2,21 +2,24 @@
  * @Author: yangyu 1431330771@qq.com
  * @Date: 2023-06-16 15:13:51
  * @LastEditors: wangChao 6141364@qq.com
- * @LastEditTime: 2024-12-30 13:14:50
+ * @LastEditTime: 2025-01-09 15:54:30
  * @FilePath: \el2package-ui\packages\JnForm\src\index.vue
  * @Description: 封装表单jnf-form
 -->
 <template>
   <el-form
-    class="jnf-form"
-    ref="form"
     v-if="modelValue"
+    ref="form"
+    class="jnf-form"
     :model="modelValue"
     :rules="rules"
     v-bind="$attrs"
     :validate-on-rule-change="false"
   >
-    <template v-for="(list, index) in formOptsCopy">
+    <template
+      v-for="(list, index) in formOptsCopy"
+      :key="index"
+    >
       <div
         v-show="list[0] ? (list[0].config ? !list[0].config?.hidden : true) : true"
         :class="isShowInfo ? 'item-row' : ''"
@@ -34,10 +37,10 @@
               >
                 <span v-html="item.label"></span>
                 <el-button
-                  type="primary"
                   v-if="item.attrs?.isShowExpand"
-                  @click="handleShow(key)"
+                  type="primary"
                   link
+                  @click="handleShow(key)"
                 >
                   <el-icon>
                     <ArrowDown v-if="!item.show" />
@@ -57,8 +60,8 @@
                 :schema="{ ...item }"
               >
                 <el-col
-                  :span="item?.colSize"
                   v-show="item.show"
+                  :span="item?.colSize"
                 >
                   <el-form-item
                     :prop="key"
@@ -72,9 +75,9 @@
                         :scope="item"
                       ></slot>
                       <component
-                        v-if="item.type !== 'upload' && item.type !== 'editor'"
                         v-bind="cAttrs(item)"
                         :is="`el-${item.type}`"
+                        v-if="item.type !== 'upload' && item.type !== 'editor'"
                         v-model="modelValue[key!]"
                         :placeholder="item.placeholder"
                         v-on="cEvent(item)"
@@ -104,8 +107,8 @@
                     </template>
                     <!-- :disabled="item.attrs?.disabled ?? props?.disabled" -->
                     <component
-                      v-else
                       :is="`el-${item.type}`"
+                      v-else
                       v-model="modelValue[key!]"
                       :placeholder="item.placeholder"
                       :disabled="props.disabled || item.attrs?.disabled"
@@ -114,9 +117,9 @@
                     >
                       <!-- :disabled="child?.disabled ?? props?.disabled" -->
                       <component
-                        v-if="compChildName(item)"
                         :is="`el-${compChildName(item)}`"
                         v-for="(child, i) in item?.children"
+                        v-if="compChildName(item)"
                         :key="child[item.attrs?.valueKey || 'value']"
                         :label="compChildLabel(item, child)"
                         :value="compChildValue(item, child, i)"
@@ -599,7 +602,6 @@
   }
 
   .jnf-form {
-    background: #fff;
     width: 100%;
     padding-bottom: 10px;
 
@@ -632,7 +634,7 @@
 
     .el-form-item {
       width: 100%;
-      padding-right: 32px !important;
+      padding-right: 16px !important;
       margin-right: unset !important;
       // margin: auto;
     }

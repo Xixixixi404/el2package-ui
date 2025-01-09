@@ -3,13 +3,19 @@
 // css variables
 :root {
   // layouts
+  --vp-home-hero-name-color: transparent;
+  --vp-home-hero-name-background: -webkit-linear-gradient(120deg, #47caff 30%, #ff9900);
+  --vp-c-brand-3: #42707f;
+  --vp-c-brand-2: #538da0;
+  --vp-c-brand-1: #538da0;
   --vp-screen-max-width: 1376px;
-  --vp-c-brand: #646cff;
+  --vp-c-brand: #42707f;
   --vp-c-brand-light: #747bff;
   --vp-c-brand-lighter: #9499ff;
   --vp-c-brand-lightest: #bcc0ff;
   --vp-c-brand-dark: #535bf2;
   --vp-c-brand-darker: #454ce1;
+  --vp-home-hero-image-background-image: linear-gradient(-45deg, #ff9900 50%, #47caff 50%);
   // colors
   --text-color: var(--el-text-color-primary);
   --text-color-light: var(--el-text-color-regular);
@@ -72,11 +78,13 @@
 
   @include respond-to('xxl') {
     --vp-sidebar-width-small: 234px;
+    --vp-home-hero-image-filter: blur(56px);
   }
 
   @include respond-to('max') {
     --vp-screen-max-width: 1482px;
     --vp-sidebar-width-small: 290px;
+    --vp-home-hero-image-filter: blur(68px);
   }
 }
 

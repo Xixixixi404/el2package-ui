@@ -31,7 +31,7 @@ export const columns1 = ref([
     width: 80,
     index: (index: number) => {
       return index * 3
-    },
+    }
   },
   {
     prop: 'name',
@@ -54,7 +54,7 @@ export const columns1 = ref([
     // slotName: "name",
     header: (val) => {
       return <el-input v-model={a.value}></el-input>
-    },
+    }
   },
   {
     fit: false,
@@ -62,7 +62,7 @@ export const columns1 = ref([
     label: '地址',
     header: (val) => {
       return <el-input v-model={a.value}></el-input>
-    },
+    }
     // children: [
     //     {
     //         label: '省份',
@@ -91,36 +91,36 @@ export const columns1 = ref([
   {
     prop: 'address1',
     label: '地址1',
-    fit: true,
+    fit: true
   },
   {
     prop: 'address2',
-    label: '地址2',
+    label: '地址2'
   },
   {
     prop: 'address3',
-    label: '地址3',
+    label: '地址3'
   },
 
   {
     prop: 'address4',
-    label: '地址4',
+    label: '地址4'
   },
   {
     prop: 'address5',
-    label: '地址5',
+    label: '地址5'
   },
   {
     prop: 'address6',
-    label: '地址6',
+    label: '地址6'
   },
   {
     prop: 'amount',
     label: '金额',
     // sortable: true,
     render: (val) => {
-      return <jn-button type="primary">Primary</jn-button>
-    },
+      return <el2-button type="primary">Primary</el2-button>
+    }
   },
   {
     prop: 'handler',
@@ -129,6 +129,6 @@ export const columns1 = ref([
     align: 'center',
     showOverflowTooltip: true,
     fixed: 'right',
-    minWidth: 220,
-  },
+    minWidth: 220
+  }
 ])

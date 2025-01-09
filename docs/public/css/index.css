@@ -72,9 +72,6 @@
 .vp-doc td {
   border: none;
 }
-.VPContent .VPDoc .container .content {
-  padding: 0;
-}
 .VPNav {
   z-index: 41 !important;
 }
@@ -86,6 +83,40 @@
 }
 .VPContent .VPDoc.has-aside .content-container {
   max-width: 1200px;
+}
+.vp-doc [class*='language-'] > button.copy {
+  width: 34px;
+  height: 34px;
+}
+[class*='language-']:before {
+  content: none;
+}
+
+.custom-block.tip {
+  position: relative;
+  overflow: hidden;
+}
+
+.custom-block.tip::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 5px;
+  background-color: var(--vp-c-brand);
+}
+
+table {
+  width: 100%; /*表格宽度*/
+  max-width: 65em; /*表格最大宽度，避免表格过宽*/
+  margin: 15px auto; /*外边距*/
+  border-collapse: collapse; /*使用单一线条的边框*/
+  empty-cells: show; /*单元格无内容依旧绘制边框*/
+}
+
+table:focus-visible {
+  outline: none;
 }
 
 /* pre{

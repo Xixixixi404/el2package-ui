@@ -3,7 +3,7 @@
  * @Author: wangchao 6141364@qq.com
  * @Date: 2024-06-27 11:11:04
  * @LastEditors: wangChao 6141364@qq.com
- * @LastEditTime: 2025-01-08 14:12:13
+ * @LastEditTime: 2025-01-09 13:53:45
  * @FilePath: \el2package-ui\docs\.vitepress\theme\index.ts
  */
 import DefaultTheme from 'vitepress/theme'
@@ -20,10 +20,10 @@ import { VPDemo } from '../vitepress'
 /**
  * @description: 引入组件库 并在全局注册
  */
-import TuiPlus from '../../../packages'
+import el2packageUi from '../../../packages'
 import '../../public/css/index.css'
 
-import '@vue-office/excel/lib/index.css'
+// import '@vue-office/excel/lib/index.css'
 
 export default {
   ...DefaultTheme,
@@ -38,7 +38,7 @@ export default {
       ctx.app.component(key, component)
     }
     // 全局注册基础组件
-    ctx.app.use(TuiPlus)
+    ctx.app.use(el2packageUi)
 
     // TODO: 混入 vue-office 库， 暂时不需要
     // ctx.app.mixin({

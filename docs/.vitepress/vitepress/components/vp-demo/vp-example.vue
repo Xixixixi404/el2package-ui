@@ -3,7 +3,7 @@
  * @Author: wangChao 6141364@qq.com
  * @Date: 2024-06-27 11:11:04
  * @LastEditors: wangChao 6141364@qq.com
- * @LastEditTime: 2025-01-08 15:08:37
+ * @LastEditTime: 2025-01-09 13:58:15
  * @FilePath: \el2package-ui\docs\.vitepress\vitepress\components\vp-demo\vp-example.vue
  * Endless Story. - NANA
 -->
@@ -29,8 +29,8 @@
 <script lang="ts" setup>
   import { onBeforeMount, shallowRef } from 'vue'
 
-  const props: any = defineProps<{
-    path?: string
+  const props = defineProps<{
+    path: string
   }>()
 
   // 创建一个跟踪自身 .value 变化的 ref，但不会使其值也变成响应式的。
@@ -38,6 +38,7 @@
 
   onBeforeMount(() => {
     // 匹配到的文件默认是懒加载的，通过动态导入实现，并会在构建时分离为独立的 chunk。如果你倾向于直接引入所有的模块（例如依赖于这些模块中的副作用首先被应用），你可以传入 { eager: true } 作为第二个参数：
+    // TODO: 等待更换
     const modules = import.meta.glob(`../../../../examples/*/*.vue`, {
       eager: true
     })

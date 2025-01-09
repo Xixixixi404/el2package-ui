@@ -30,7 +30,7 @@ export const columns1 = ref([
     width: 80,
     index: (index: number) => {
       return index * 3
-    },
+    }
   },
   {
     prop: 'name',
@@ -54,12 +54,12 @@ export const columns1 = ref([
       return val
 
       //   <el-tag type="success">{ val }</el-tag>;
-    },
+    }
   },
   {
     fit: false,
     prop: 'name',
-    label: '地址',
+    label: '地址'
     // children: [
     //     {
     //         label: '省份',
@@ -88,28 +88,28 @@ export const columns1 = ref([
   {
     prop: 'address',
     label: '地址',
-    fit: true,
+    fit: true
   },
   {
     prop: 'address',
-    label: '地址',
+    label: '地址'
   },
   {
     prop: 'address',
-    label: '地址',
+    label: '地址'
   },
 
   {
     prop: 'address',
-    label: '地址',
+    label: '地址'
   },
   {
     prop: 'address',
-    label: '地址',
+    label: '地址'
   },
   {
     prop: 'address',
-    label: '地址',
+    label: '地址'
   },
   {
     prop: 'amount',
@@ -117,8 +117,8 @@ export const columns1 = ref([
     // sortable: true,
     render: (val) => {
       return val
-      // <jn-button type="primary">Primary</jn-button>
-    },
+      // <el2-button type="primary">Primary</el2-button>
+    }
   },
   {
     prop: 'handler',
@@ -127,6 +127,6 @@ export const columns1 = ref([
     align: 'center',
     showOverflowTooltip: true,
     fixed: 'right',
-    minWidth: 220,
-  },
+    minWidth: 220
+  }
 ])

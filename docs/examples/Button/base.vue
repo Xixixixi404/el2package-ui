@@ -1,16 +1,17 @@
 <!--
- * @Author: yangyu 1431330771@qq.com
- * @Date: 2023-09-20 15:33:17
- * @LastEditors: yangyu 1431330771@qq.com
- * @LastEditTime: 2023-09-20 15:36:15
- * @FilePath: \jnf-ui-master\docs\examples\JnButton\base.vue
- * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ * @Description: 
+ * @Author: wangChao 6141364@qq.com
+ * @Date: 2024-06-27 11:11:04
+ * @LastEditors: wangChao 6141364@qq.com
+ * @LastEditTime: 2025-01-09 15:22:20
+ * @FilePath: \el2package-ui\docs\examples\Button\base.vue
+ * Endless Story. - NANA
 -->
 <template>
   <t-layout-page class="t_button_demo">
     <t-layout-page-item>
       <div style="display: flex; align-items: center">
-        <div style="width: 140px; font-weight: 700">输入防抖时间：</div>
+        <div style="font-weight: 700">试试防抖时间：</div>
         <el-input-number
           v-model="time"
           style="width: 240px"
@@ -21,14 +22,15 @@
           @change="handleChange"
         />
       </div>
-      <jn-button
+      <el2-button
         style="margin-top: 15px"
-        color="#626aef"
         :time="time"
-        @click="exportExcel"
+        type="primary"
+        round
+        @click="clickFn"
       >
-        导出
-      </jn-button>
+        Primary
+      </el2-button>
     </t-layout-page-item>
   </t-layout-page>
 </template>
@@ -38,7 +40,7 @@
   const handleChange = (val) => {
     console.log('输入框的值：', val)
   }
-  const exportExcel = () => {
+  const clickFn = () => {
     console.log('点击事件')
   }
 </script>

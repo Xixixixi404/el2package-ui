@@ -33,7 +33,7 @@ export default defineConfig({
       ext: '.gz' // 文件类型
     }),
     AutoImport({
-      dirs: ['./src/hooks'], // 用户模块
+      // dirs: ['./src/hooks'], // 自定义引入模块
       resolvers: [ElementPlusResolver()],
       include: [/\.[tj]sx?$/, /\.vue$/, /\.vue\?vue/, /\.md$/],
       imports: ['vue', 'vue-router', 'pinia', '@vueuse/core'],
