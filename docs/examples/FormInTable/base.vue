@@ -1,27 +1,21 @@
-<!--
- * @Author: yangyu 1431330771@qq.com
- * @Date: 2023-09-19 11:45:27
- * @LastEditors: wangChao 6141364@qq.com
- * @LastEditTime: 2024-12-20 16:15:42
- * @FilePath: \el2package-ui\docs\examples\JnFormInTable\base.vue
- * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
--->
 <template>
   <t-layout-page>
     <t-layout-page-item>
       <!-- {{ formData }} -->
       <el2-form
         ref="detailForm"
+        v-model="formData"
         class="baseForm"
         label-width="110px"
         :formOpts="formOptions"
-        v-model="formData"
         :disabled="false"
       >
         <template #list="{ formData }">
-          <el2-form-table
+          <!-- TODO: 添加自定义row-key -->
+          <el2-form-in-table
             :tableData="formData.list"
             ruleKey="list"
+            row-key="id"
             :columns="tableOptions"
             border
             :disabled="false"
@@ -39,7 +33,7 @@
                 >删除132123123</el-button
               >
             </template> -->
-          </el2-form-table>
+          </el2-form-in-table>
         </template>
       </el2-form>
       <el-button @click="handleClose">取消</el-button>
@@ -53,61 +47,15 @@
   </t-layout-page>
 </template>
 <script setup lang="ts">
-  import { table } from 'console'
   import { ref, onMounted } from 'vue'
-  // import { formOptions } from './config'
   let detailForm = ref()
   const formData = ref({ area11: '212121', list: [{ area11: 'dd' }] })
-  // /<BaseForm.FormOptions[]>
   const changeSaleOrg = (e, row) => {
     console.log(e, row, 'eqeqwwq')
     row.saleCountry = '31312321'
     row.saleGroup = e
-    // formOptions.value.saleCountry.children = [
-    //   {
-    //     label: '前纺一车间',
-    //     value: 'W1',
-    //   },
-    //   {
-    //     label: '前纺二车间',
-    //     value: 'W2',
-    //   },
-    //   {
-    //     label: '前纺三车间',
-    //     value: 'W3',
-    //   },
-    // ]
   }
   const sapOptions = ref([])
-  // const remoteMethod = (query: string) => {
-  //   if (query) {
-  //     setTimeout(() => {
-  //       sapOptions.value = [
-  //         {
-  //           label: '前纺一车间',
-  //           value: 'W1',
-  //         },
-  //         {
-  //           label: '前纺二车间',
-  //           value: 'W2',
-  //         },
-  //         {
-  //           label: '前纺三车间',
-  //           value: 'W3',
-  //         },
-  //       ]
-  //     }, 1000)
-  //   } else {
-  //     sapOptions.value = []
-  //   }
-  // }
-  let pageConfig = ref({
-    pageNum: 1,
-    pageSize: 10,
-    total: 0,
-    small: true,
-    background: true
-  })
   const formOptions = ref({
     title1: {
       type: 'title',
@@ -366,6 +314,7 @@
       configEdit: {
         type: 'select',
         children: ({ row, formData }) => {
+          console.log(formData)
           return row.list
         }
       }
@@ -466,12 +415,13 @@
   function handleClose() {
     detailForm.value.resetFields()
   }
-  function submitForm(params) {
+  function submitForm() {
     let validate = detailForm.value.validate()
     validate((valid: boolean) => {
       if (valid) {
       }
     })
     let model = detailForm.value.getFormData()
+    console.log(model, 'model')
   }
 </script>

@@ -3,7 +3,7 @@
  * @Author: wangChao 6141364@qq.com
  * @Date: 2024-06-27 11:11:04
  * @LastEditors: wangChao 6141364@qq.com
- * @LastEditTime: 2025-01-10 09:46:35
+ * @LastEditTime: 2025-01-10 09:59:51
  * @FilePath: \el2package-ui\packages\index.ts
  * Endless Story. - NANA
  */
@@ -17,9 +17,8 @@ import El2TableSearch from './TableSearch'
 import El2Form from './Form'
 import El2Detail from './Detail'
 import El2Table from './Table'
+import El2FormInTable from './FormInTable'
 
-import JnFormTable from './JnFormInTable'
-import JnFileUpload from './JnFileUpload'
 import JnToolbar from './JnToolbar'
 import VersionTag from './VersionTag' // 版本号内部文档使用
 
@@ -35,9 +34,8 @@ const components: {
   El2Form,
   El2Detail,
   El2Table,
+  El2FormInTable,
 
-  JnFormTable,
-  JnFileUpload,
   JnToolbar,
   VersionTag
 }
@@ -72,8 +70,7 @@ export {
   El2Form,
   El2Detail,
   El2Table,
-  JnFormTable,
-  JnFileUpload,
+  El2FormInTable,
   JnToolbar,
   VersionTag
 }

@@ -1,7 +1,7 @@
 <template>
   <!-- 数据表格 -->
   <el-table
-    class="el2-form-table"
+    class="el2-form-in-table"
     ref="jnFormTableRef"
     :data="tableData"
     v-bind="$attrs"
@@ -27,13 +27,6 @@
           ></RenderCol>
         </template>
       </el-table-column>
-      <!-- <MultistageColumn
-        v-if="column.children && column.children.length"
-        :key="column.prop"
-        :column="column"
-      ></MultistageColumn> -->
-      <!-- :key="column.prop" -->
-      <!-- v-else -->
       <el-table-column
         v-if="column?.type == 'handle'"
         label="操作"
@@ -155,9 +148,7 @@
   </div>
 </template>
 <script lang="ts" setup>
-  import { defineProps, computed, defineEmits, reactive, ref, PropType } from 'vue'
   import RenderCol from './renderCol.vue'
-  // import MultistageColumn from './MultistageColumn.vue' // 递归多级表头组件
   import Pagination from './Pagination.vue' // 分页组件
   import SingleEditCell from './singleEditCell.vue'
   // 定义组件接收的prop属性
@@ -537,7 +528,7 @@
   }
 </style>
 <style lang="scss">
-  .el2-form-table {
+  .el2-form-in-table {
     .el-form-item {
       padding: 0 !important;
       margin: 0 !important;

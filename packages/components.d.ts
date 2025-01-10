@@ -17,7 +17,7 @@ import El2TableSearch from './TableSearch/src/index.vue'
 import JnDetail from './Detail/src/index.vue'
 import JnForm from './Form/src/index.vue'
 import JnTable from './Table/src/index.vue'
-import JnFormTable from './JnFormInTable/src/index.vue'
+import JnFormTable from './FormInTable/src/index.vue'
 import JnFileUpload from './JnFileUpload/src/index.vue'
 import JnToolbar from './JnToolbar/src/index.vue'
 
