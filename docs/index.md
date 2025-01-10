@@ -21,6 +21,14 @@ hero:
       link: /components/Button/base.md
 features:
   - icon:
+      src: /img/vue-logo.svg
+      width: 40px
+      height: 40px
+    title: Vue 3 驱动。
+    details: 享受 Vue3 + vite6 快速开发体验。
+    linkText: 渐进式 JavaScript 框架
+    link: https://vuejs.org
+  - icon:
       src: /img/element-plus-logo.svg
       width: 40px
       height: 40px
@@ -29,14 +37,7 @@ features:
     linkText: 一个 Vue 3 UI 框架
     link: https://element-plus.org/zh-CN/
   - icon:
-      src: /img/vue-logo.svg
-      width: 40px
-      height: 40px
-    title: Vue 3 驱动。
-    details: 享受 Vue3 + vite6 快速开发体验。
-    link: https://vuejs.org
-  - icon:
-      src: /img/SVG图像20250108163354.svg
+      src: /img/logo.svg
       width: 40px
       height: 40px
     title: El2package-UI
