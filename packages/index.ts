@@ -3,7 +3,7 @@
  * @Author: wangChao 6141364@qq.com
  * @Date: 2024-06-27 11:11:04
  * @LastEditors: wangChao 6141364@qq.com
- * @LastEditTime: 2025-01-10 09:24:55
+ * @LastEditTime: 2025-01-10 09:46:35
  * @FilePath: \el2package-ui\packages\index.ts
  * Endless Story. - NANA
  */
@@ -16,8 +16,8 @@ import El2Select from './Select'
 import El2TableSearch from './TableSearch'
 import El2Form from './Form'
 import El2Detail from './Detail'
+import El2Table from './Table'
 
-import JnTable from './JnTable'
 import JnFormTable from './JnFormInTable'
 import JnFileUpload from './JnFileUpload'
 import JnToolbar from './JnToolbar'
@@ -34,8 +34,8 @@ const components: {
   El2TableSearch,
   El2Form,
   El2Detail,
+  El2Table,
 
-  JnTable,
   JnFormTable,
   JnFileUpload,
   JnToolbar,
@@ -71,7 +71,7 @@ export {
   El2TableSearch,
   El2Form,
   El2Detail,
-  JnTable,
+  El2Table,
   JnFormTable,
   JnFileUpload,
   JnToolbar,

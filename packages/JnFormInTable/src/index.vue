@@ -287,7 +287,7 @@
   }
 </style>
 <style lang="scss" scoped>
-  .jn-table {
+  .el2-table {
     z-index: 0;
     background-color: var(--el-bg-color);
 

@@ -50,7 +50,7 @@
       的文件
     </div>
 
-    <jn-table
+    <el2-table
       :tableData="fileList"
       :columns="props.fileColumns"
       scrollbar-always-on
@@ -90,7 +90,7 @@
         </el-space>
         <!-- </template> -->
       </template>
-    </jn-table>
+    </el2-table>
     <!-- <el-table :data="fileList" style="width: 100%">
       <el-table-column prop="filename" label="文档名称" min-width="180" />
       <el-table-column prop="fileSize" label="大小" />

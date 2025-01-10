@@ -44,7 +44,7 @@
         v-model:tableColumns="columns"
         cacheKey="placeOrder"
       ></jn-toolbar>
-      <jn-table
+      <el2-table
         cacheKey="placeOrder"
         :tableData="tableData"
         :loading="loading"
@@ -84,7 +84,7 @@
             删除
           </el-button>
         </template>
-      </jn-table>
+      </el2-table>
     </t-layout-page-item>
   </t-layout-page>
 </template>

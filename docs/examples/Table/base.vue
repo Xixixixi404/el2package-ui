@@ -2,16 +2,16 @@
  * @Author: yangyu 1431330771@qq.com
  * @Date: 2023-09-19 11:45:27
  * @LastEditors: wangChao 6141364@qq.com
- * @LastEditTime: 2024-12-16 15:39:16
- * @FilePath: \el2package-ui\docs\examples\JnTable\base.vue
+ * @LastEditTime: 2025-01-10 09:48:14
+ * @FilePath: \el2package-ui\docs\examples\Table\base.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
 <template>
   <t-layout-page>
     <t-layout-page-item>
       <div style="height: 20px"></div>
-      <!-- <jn-table></jn-table> -->
-      <jn-table
+      <!-- <el2-table></el2-table> -->
+      <el2-table
         :tableData="tableData"
         :loading="loading"
         :columns="columns1"
@@ -51,13 +51,13 @@
             删除
           </el-button>
         </template>
-      </jn-table>
+      </el2-table>
     </t-layout-page-item>
   </t-layout-page>
 </template>
 <script setup lang="ts">
   import { reactive, ref, onMounted } from 'vue'
-  import { columns1 } from './config.tsx'
+  import { columns1 } from './config.jsx'
   console.log(columns1, 'columns1')
 
   const columns = ref([
