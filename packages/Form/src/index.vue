@@ -2,7 +2,7 @@
   <el-form
     v-if="modelValue"
     ref="form"
-    class="jnf-form"
+    class="el2-form"
     :model="modelValue"
     :rules="rules"
     v-bind="$attrs"
@@ -16,8 +16,8 @@
         v-show="list[0] ? (list[0].config ? !list[0].config?.hidden : true) : true"
         :class="isShowInfo ? 'item-row' : ''"
       >
-        <el-row class="demo-autocomplete">
-          <template v-for="(items, key) in list">
+        <el-row>
+          <template v-for="items in list">
             <template
               v-for="(item, key) in items"
               :key="key"
@@ -69,7 +69,6 @@
                       <component
                         v-bind="cAttrs(item)"
                         :is="`el-${item.type}`"
-                        v-if="item.type !== 'upload' && item.type !== 'editor'"
                         v-model="modelValue[key!]"
                         :placeholder="item.placeholder"
                         v-on="cEvent(item)"
@@ -78,26 +77,7 @@
                           <component :is="item?.attrs?.slot?.render"></component>
                         </template>
                       </component>
-                      <el-upload
-                        v-if="item.type === 'upload'"
-                        v-bind="item.uploadAttrs"
-                        :on-preview="onPreview"
-                        :on-remove="onRemove"
-                        :on-success="onSuccess"
-                        :on-error="onError"
-                        :on-progress="onProgress"
-                        :on-change="onChange"
-                        :before-upload="beforeUpload"
-                        :before-remove="beforeRemove"
-                        :http-request="httpRequest"
-                        :on-exceed="onExceed"
-                        class="m-el-upload"
-                      >
-                        <slot name="uploadArea"></slot>
-                        <slot name="uploadTip"></slot>
-                      </el-upload>
                     </template>
-                    <!-- :disabled="item.attrs?.disabled ?? props?.disabled" -->
                     <component
                       :is="`el-${item.type}`"
                       v-else
@@ -107,18 +87,18 @@
                       v-bind="cAttrs(item)"
                       v-on="cEvent(item)"
                     >
-                      <!-- :disabled="child?.disabled ?? props?.disabled" -->
-                      <component
-                        :is="`el-${compChildName(item)}`"
-                        v-for="(child, i) in item?.children"
-                        v-if="compChildName(item)"
-                        :key="child[item.attrs?.valueKey || 'value']"
-                        :label="compChildLabel(item, child)"
-                        :value="compChildValue(item, child, i)"
-                        :disabled="props.disabled || child?.disabled"
-                      >
-                        {{ child[item.attrs?.props?.label || 'label'] }}
-                      </component>
+                      <template v-if="compChildName(item)">
+                        <component
+                          :is="`el-${compChildName(item)}`"
+                          v-for="child in item?.children"
+                          :key="child[item.attrs?.valueKey || 'value']"
+                          :label="compChildLabel(item, child)"
+                          :value="compChildValue(item, child)"
+                          :disabled="props.disabled || child?.disabled"
+                        >
+                          {{ child[item.attrs?.props?.label || 'label'] }}
+                        </component>
+                      </template>
                     </component>
                   </el-form-item>
                 </el-col>
@@ -136,16 +116,10 @@
         </el-row>
       </div>
     </template>
-    <!-- <el-form-item v-if="!isSearch">
-      <slot name="action" :form="form" :model="modelValue"></slot>
-    </el-form-item> -->
   </el-form>
 </template>
 
 <script setup lang="ts">
-  import { PropType, ref, onMounted, watch, computed, defineExpose, nextTick, onBeforeUnmount, onUnmounted } from 'vue'
-
-  const num = ref(1)
   let props = defineProps({
     modelValue: {
       type: Object
@@ -157,13 +131,7 @@
     formData: {
       type: Object,
       default: null
-      // default: () => ({}), // return object
     },
-    //表单配置项
-    // options: {
-    //   type: Array as PropType<BaseForm.FormOptions[]>,
-    //   required: true,
-    // },
     formOpts: {
       type: Object,
       default: () => ({})
@@ -214,6 +182,14 @@
     'on-exceed'
   ])
   const sum = ref(6)
+
+  let rules = ref<any>({})
+  let form = ref<any>()
+  let formOptsCopy = ref<any>([])
+
+  let isShowInfo = ref(false)
+  let isMethodCalled = ref(false)
+
   // 定义showCol方法
   const isShowExpand = ref(false)
   const showCol = (col) => {
@@ -278,30 +254,6 @@
       }
     }
   }
-  // const formModel = ref(props.value || {})
-  // let model = ref<any>(props.value || {})
-  // watch(
-  //   () => props.value,
-  //   (val) => {
-  //     if (initType.value) {
-  //       console.log('新组件。。。。')
-  //       model.value = val
-  //     }
-  //   },
-  //   { deep: true }
-  // )
-  // const initType = ref(undefined)
-
-  let rules = ref<any>({})
-  const schema = ref<any>({})
-  // BaseForm.FormInstance |
-  let form = ref<any>()
-  let editorVal = ref('')
-  let formOptsCopy = ref<any>([])
-
-  let isShowInfo = ref(false)
-  let isHidden = ref(false)
-  let isMethodCalled = ref(false)
 
   /**
    * @description: 初始化菜单
@@ -309,8 +261,6 @@
    * @return {*}
    */
   const initForm = async ({ formData: data = {}, type }) => {
-    // initType.value = type
-
     if (isMethodCalled.value) {
       // console.log('方法已经被调用过！')
       return
@@ -361,61 +311,12 @@
     if (!type) {
       emits('update:modelValue', data)
     }
-    // if (props.value) {
-    //   model.value = props.value
-    // } else if (props.formData) {
-    //   model.value = props.formData
-    // } else {
-    //   model.value = data
-    // }
     await nextTick()
     form.value?.clearValidate()
     calculateShowCol(false)
     isMethodCalled.value = false
   }
-  onMounted(() => {
-    setTimeout(() => {
-      if (!isMethodCalled.value) {
-        initForm({ type: 'itself' })
-      }
-    })
-  })
-  onBeforeUnmount(() => {
-    isMethodCalled.value = false
-  })
-  // watch(
-  //   () => props.formData,
-  //   (val) => {
-  //     // if (!initType.value) {
-  //     console.log('老组件。。。。')
-  //     emits('update:modelValue', val)
-  //     // }
-  //   },
-  //   { deep: true }
-  // )
-  // const initForm = ({ schema: formSchema = {}, formData: data = {} }) => {
-  //   schema.value = Object.keys(formSchema).reduce(
-  //     (pre, key) => ({
-  //       ...pre,
-  //       [key]: {
-  //         ...formSchema[key],
-  //       },
-  //     }),
-  //     {}
-  //   )
-  //   Object.keys(schema.value).forEach((key) => {
-  //     rules.value[key] = [
-  //       {
-  //         trigger: 'change',
-  //         required: props.disabled ? true : schema.value[key].required,
-  //         message: (schema.value[key].label || '此项') + '是必填项',
-  //       },
-  //       ...(schema.value[key].rules || []),
-  //     ]
-  //   })
-  //   model.value = cloneDeep(data)
-  //   calculateShowCol(false)
-  // }
+
   // 子组件名称
   const compChildName = computed(() => {
     return (opt: any) => {
@@ -433,10 +334,10 @@
   })
   // 子子组件value
   const compChildValue = computed(() => {
-    return (opt: any, child, key) => {
+    return (opt: any, child) => {
       switch (opt.type) {
         case 'select':
-          if (opt.attrs?.valueKey) return child
+          return child
         default:
           return child[opt.attrs?.props?.value || 'value']
       }
@@ -448,35 +349,11 @@
       switch (opt.type) {
         case 'radio-group':
           return child[opt.attrs?.props?.value || 'value']
-        // case 'select':
-        // case 'checkbox-group':
-        //   return child[opt.attrs?.props.label || 'label']
         default:
           return child[opt.attrs?.props?.label || 'label']
       }
     }
   })
-  // 子子组件文字展示
-  // const compChildShowLabel = computed(() => {
-  //   return (opt: any, child) => {
-  //     switch (opt.type) {
-  //       case 'checkbox-group':
-  //       case 'radio-group':
-  //         return child.label
-  //       // case 'select':
-  //       //   return child[opt.attrs?.props?.label || 'label']
-  //       default:
-  //         return child[opt.attrs?.props?.label || 'label']
-  //     }
-  //   }
-  // })
-  const cSlots = (slot) => {
-    if (slot) {
-      let slotOption = {}
-      slotOption[slot.name] = slot.render
-      return slotOption
-    }
-  }
 
   // 参数配置
   const cAttrs = computed(() => {
@@ -498,6 +375,7 @@
       return itemAttrs
     }
   })
+
   // 事件
   const cEvent = computed(() => {
     return (opt: any) => {
@@ -511,80 +389,47 @@
       return { ...changeEvent }
     }
   })
+
   const resetFields = () => {
     //重置表单
     form.value!.resetFields()
-    // props.modelValue = {}
   }
+
   //表单验证的方法
   const validate = () => {
     return form.value!.validate
   }
+
   //获取表单数据
   const getFormData = () => {
     return props.modelValue
   }
+
+  onMounted(() => {
+    setTimeout(() => {
+      if (!isMethodCalled.value) {
+        initForm({ type: 'itself' })
+      }
+    })
+  })
+
+  onBeforeUnmount(() => {
+    isMethodCalled.value = false
+  })
+
   defineExpose({
     initForm,
     resetFields,
     validate,
     getFormData,
     model: props.modelValue,
-    // props.modelValue,
     calculateShowCol,
     isShowExpand
   })
-
-  // watch(
-  //   () => props.options,
-  //   () => {
-  //     initForm(model.value);
-  //   },
-  //   { deep: true }
-  // );
-
-  // 上传组件的所有方法
-  let onPreview = (file: File) => {
-    emits('on-preview', file)
-  }
-  let onRemove = (file: File, fileList: FileList) => {
-    emits('on-remove', { file, fileList })
-  }
-  let onSuccess = (response: any, file: File, fileList: FileList) => {
-    // 上传图片成功 给表单上传项赋值
-    // let uploadItem = props.options.find((item) => item.type === 'upload')!
-    // model.value[uploadItem.prop!] = { response, file, fileList }
-    // emits('on-success', { response, file, fileList })
-  }
-  let onError = (err: any, file: File, fileList: FileList) => {
-    emits('on-error', { err, file, fileList })
-  }
-  let onProgress = (event: any, file: File, fileList: FileList) => {
-    emits('on-progress', { event, file, fileList })
-  }
-  let onChange = (file: File, fileList: FileList) => {
-    emits('on-change', { file, fileList })
-  }
-  let beforeUpload = (file: File) => {
-    emits('before-upload', file)
-  }
-  let beforeRemove = (file: File, fileList: FileList) => {
-    emits('before-remove', { file, fileList })
-  }
-  let onExceed = (files: File, fileList: FileList) => {
-    emits('on-exceed', { files, fileList })
-  }
 </script>
 
-<style scoped lang="scss">
-  // @use "@/assets/styles/common.scss";
-
-  .el-upload {
-    flex-direction: column !important;
-  }
-</style>
-<style lang="scss">
-  .jnf-form {
+<style lang="scss" scoped>
+  .el2-form {
     .el-input,
     .el-cascader,
     .el-select,
@@ -593,7 +438,7 @@
     }
   }
 
-  .jnf-form {
+  .el2-form {
     width: 100%;
     padding-bottom: 10px;
 
@@ -601,28 +446,15 @@
     .secondary-tit {
       width: 100%;
       padding: 0 12px;
+      margin-bottom: 15px;
       font-size: 16px;
       line-height: 42px;
       font-family:
         PingFang SC-Heavy,
         PingFang SC;
-      color: rgba(38, 38, 38, 1);
-      // font-weight: 900;
+      color: var(--el-text-color-regular);
+      background: rgba(154, 202, 255, 0.17);
     }
-
-    // .secondary-tit::before {
-    //   content: '';
-    //   display: inline-block;
-    //   width: 5px;
-    //   height: 50%;
-    //   position: absolute;
-    //   left: -10px;
-    //   top: 50%;
-    //   /* 上边缘距离父容器顶部的百分比 */
-    //   transform: translate(0%, -50%);
-    //   /* 通过负值的偏移来居中元素 */
-    //   background: linear-gradient(#4a84fe 0%, #1665ff 20%);
-    // }
 
     .el-form-item {
       width: 100%;
@@ -637,23 +469,9 @@
       align-items: center;
     }
 
-    // .el-form-item--default {
-    //   padding-right: 32px !important;
-    // }
-
     .item-row {
-      border: 1px solid rgba(154, 202, 255, 0.17);
       margin-bottom: 15px;
       border-radius: 4px;
-      .demo-autocomplete {
-        padding: 56px 12px 0;
-      }
-      .secondary-tit {
-        background: rgba(154, 202, 255, 0.17);
-        position: absolute;
-        left: 0;
-        top: 0;
-      }
     }
   }
 </style>
