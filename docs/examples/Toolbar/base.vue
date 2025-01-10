@@ -8,6 +8,7 @@
         :tableData="tableData"
         :loading="loading"
         :columns="columns"
+        showToolbar
         rowKey="id"
         stripe
         border

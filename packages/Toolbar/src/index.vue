@@ -109,7 +109,7 @@
     defineProps<{
       columnConfig: any[]
       cacheKey: string
-      position: 'flex-start' | 'center' | 'flex-end' | 'start' | 'end'
+      position?: 'flex-start' | 'center' | 'flex-end' | 'start' | 'end'
     }>(),
     {
       position: 'flex-end'
