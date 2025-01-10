@@ -13,13 +13,11 @@ import TLayoutPageItem from './layout-page-item/src/index.vue'
 import El2Button from './Button/src/index.vue'
 import El2Select from './Select/src/index.vue'
 import El2TableSearch from './TableSearch/src/index.vue'
-
-import JnDetail from './Detail/src/index.vue'
-import JnForm from './Form/src/index.vue'
-import JnTable from './Table/src/index.vue'
-import JnFormTable from './FormInTable/src/index.vue'
-import JnFileUpload from './JnFileUpload/src/index.vue'
-import JnToolbar from './Toolbar/src/index.vue'
+import El2Detail from './Detail/src/index.vue'
+import El2Form from './Form/src/index.vue'
+import El2Table from './Table/src/index.vue'
+import El2FormTable from './FormInTable/src/index.vue'
+import El2Toolbar from './Toolbar/src/index.vue'
 
 declare module 'vue' {
   export interface GlobalComponents {
@@ -28,12 +26,10 @@ declare module 'vue' {
     El2Button: typeof El2Button
     El2Select: typeof El2Select
     El2TableSearch: typeof El2TableSearch
-
-    JnDetail: typeof JnDetail
-    JnForm: typeof JnForm
-    JnTable: typeof JnTable
-    JnFormTable: typeof JnFormTable
-    JnFileUpload: typeof JnFileUpload
-    JnToolbar: typeof JnToolbar
+    El2Detail: typeof El2Detail
+    El2Form: typeof El2Form
+    El2Table: typeof El2Table
+    El2FormTable: typeof El2FormTable
+    El2Toolbar: typeof El2Toolbar
   }
 }

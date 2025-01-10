@@ -1,8 +1,8 @@
 {
   "name": "el2package-ui",
   "version": "2.0.0",
-  "description": "Vue3 中基于Element-plus二次封装基础组件文档",
-  "author": "yangyu",
+  "description": "基于Element-plus二次封装基础组件",
+  "author": "Xixixixi404",
   "license": "MIT",
   "private": false,
   "main": "lib/el2package-ui.umd.cjs",
@@ -14,7 +14,7 @@
     "README.md",
     "LICENSE",
     "lib",
-    "global.d.ts"
+    "packages/components.d.ts"
   ],
   "scripts": {
     "lib": "vite build",
