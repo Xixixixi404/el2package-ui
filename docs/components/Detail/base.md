@@ -1,48 +1,48 @@
-# JnDetail 详情组件
+# Detail 详情
 
 ### 基础用法
 
 :::demo
-JnDetail/base
+Detail/base
 :::
 
 ### 加边框
 
 :::demo
-JnDetail/border
+Detail/border
 :::
 
 ### 每行展示多少项
 
 :::demo
-JnDetail/descColumn
+Detail/descColumn
 :::
 
 ### 垂直布局
 
 :::demo
-JnDetail/vertical
+Detail/vertical
 :::
 
 ### 插槽显示
 
 :::demo
-JnDetail/slotName
+Detail/slotName
 :::
 
 ### 字典回显
 
 :::demo 需要配置：`listTypeInfo`和`dataList`
-JnDetail/echo
+Detail/echo
 :::
 
 ### tooltip 显示
 
 :::demo
-JnDetail/tooltip
+Detail/tooltip
 :::
 
-### JnDetail Attributes
+### Detail Attributes
 
 ---
 
@@ -52,10 +52,14 @@ JnDetail/tooltip
 
 ```html
 <!-- 常规模式 -->
-<jn-detail :descData="descData" />
+<el2-detail :descData="descData" />
 <!-- 字典回显模式 -->
-<jn-detail :descData="descData" :dataList="dataList"
-:listTypeInfo=="listTypeInfo" />
+<el2-detail
+  :descData="descData"
+  :dataList="dataList"
+  :listTypeInfo=""
+  ="listTypeInfo"
+/>
 ```
 
 ### 2、配置参数（Attributes）继承 el-descriptions Attributes
