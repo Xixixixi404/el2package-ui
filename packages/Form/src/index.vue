@@ -124,10 +124,6 @@
     modelValue: {
       type: Object
     },
-    value: {
-      type: Object,
-      default: null // return object
-    },
     formData: {
       type: Object,
       default: null
@@ -135,10 +131,6 @@
     formOpts: {
       type: Object,
       default: () => ({})
-    },
-    // 用户自定义上传方法
-    httpRequest: {
-      type: Function
     },
     /**
      * 是否禁用该表单
@@ -169,18 +161,7 @@
     }
   })
 
-  let emits = defineEmits([
-    'update:modelValue',
-    'on-preview',
-    'on-remove',
-    'on-success',
-    'on-error',
-    'on-progress',
-    'on-change',
-    'before-upload',
-    'before-remove',
-    'on-exceed'
-  ])
+  let emits = defineEmits(['update:modelValue'])
   const sum = ref(6)
 
   let rules = ref<any>({})

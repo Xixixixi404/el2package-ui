@@ -8,13 +8,14 @@ import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 
 import viteCompression from 'vite-plugin-compression' // 静态资源压缩
 // import {visualizer} from 'rollup-plugin-visualizer' // 打包后的视图文件
-// import dts from 'vite-plugin-dts'
+import dts from 'vite-plugin-dts'
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     vue(),
     vueJsx(),
+    dts(), // ts声明文件
     vueSetupExtend(),
     viteCompression({
       verbose: true,
@@ -88,7 +89,8 @@ export default defineConfig({
       entry: './packages/index.ts',
       name: 'el2package-ui',
       // formats: ['es', 'cjs'],
-      fileName: 'el2package-ui'
+      fileName: 'index',
+      cssFileName: 'style'
     }
   },
   css: {
