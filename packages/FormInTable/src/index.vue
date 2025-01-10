@@ -492,8 +492,7 @@
       }
     }
   }
-</style>
-<style lang="scss">
+
   .el2-form-in-table {
     .el-form-item {
       padding: 0 !important;
@@ -530,3 +529,4 @@
     }
   }
 </style>
+<style lang="scss"></style>
