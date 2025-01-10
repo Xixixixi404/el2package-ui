@@ -19,7 +19,7 @@ import JnForm from './Form/src/index.vue'
 import JnTable from './Table/src/index.vue'
 import JnFormTable from './FormInTable/src/index.vue'
 import JnFileUpload from './JnFileUpload/src/index.vue'
-import JnToolbar from './JnToolbar/src/index.vue'
+import JnToolbar from './Toolbar/src/index.vue'
 
 declare module 'vue' {
   export interface GlobalComponents {

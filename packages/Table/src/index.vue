@@ -1,18 +1,18 @@
 <template>
-  <jn-toolbar
-    v-if="showToolbar"
-    v-model:columnConfig="columnConfig"
-    :cacheKey="cacheKey"
-    @setTableColumnConfig="setTableColumnConfig"
-  ></jn-toolbar>
   <div class="el2-table-pagination">
+    <el2-toolbar
+      v-if="showToolbar"
+      v-model:columnConfig="columnConfig"
+      :cacheKey="cacheKey"
+      @setTableColumnConfig="setTableColumnConfig"
+    ></el2-toolbar>
     <!-- 数据表格 -->
     <el-table
-      class="el2-table"
       ref="jnTableRef"
+      v-loading="loading"
+      class="el2-table"
       :data="tableData"
       v-bind="$attrs"
-      v-loading="loading"
     >
       <!-- 递归渲染多级表头 -->
       <template
@@ -38,7 +38,7 @@
           </template>
           <template
             v-if="column.slotName"
-            v-slot="scope"
+            #default="scope"
           >
             <slot
               :name="column.slotName"
@@ -46,8 +46,8 @@
             ></slot>
           </template>
           <template
-            v-if="column.render"
-            v-slot="scope"
+            v-else-if="column.render"
+            #default="scope"
           >
             <RenderCol
               :column="column"
@@ -61,9 +61,9 @@
     </el-table>
     <!-- 分页配置 -->
     <div
+      v-if="showPagination"
       class="pagination"
       :style="{ justifyContent: paginationFloat }"
-      v-if="showPagination"
     >
       <el-pagination
         v-bind="_paginationConfig"
@@ -73,71 +73,37 @@
     </div>
   </div>
 </template>
-<!-- <script lang="ts">
-export default {
-  name: 'el2-table', //这个⾮常重要，就是未来你放到其他项⽬中，组件标签的名字，⽐如：<vue3-xmw-table></vue3-xmw-table>
-}
-</script> -->
+
 <script lang="ts" setup>
-  import { defineProps, computed, defineEmits, reactive, ref, watch, PropType } from 'vue'
   import RenderCol from './renderCol.vue'
   import MultistageColumn from './MultistageColumn.vue' // 递归多级表头组件
 
-  // 定义组件接收的prop属性
-  const props = defineProps({
-    // 表格源数据
-    tableData: {
-      type: Array,
-      default: () => []
-    },
-    //   表格配置项
-    tableConfig: {
-      type: Object,
-      default: () => {}
-    },
-    //   表格列配置
-    columns: {
-      type: Array as PropType<any[]>,
-      default: () => <any>[]
-    },
-    //   加载loading
-    loading: {
-      type: Boolean,
-      default: false
-    },
-    //   是否显示分页
-    showPagination: {
-      type: Boolean,
-      default: true
-    },
-    // 分页配置
-    paginationConfig: {
-      type: Object,
-      default: () => {}
-    },
-    /**
-     * 当一个页面出现多个Table时 作为唯一键
-     */
-    cacheKey: {
-      type: String,
-      default: ''
-      // required: true,
-    },
-    /**
-     * 是否显示自定义列配置
-     */
-    showToolbar: {
-      type: Boolean,
-      default: true
-    },
-    /**
-     * 分页居左/居右
-     */
-    paginationFloat: {
-      type: String,
-      default: 'end'
+  const props = withDefaults(
+    defineProps<
+      Partial<{
+        tableData: any[]
+        tableConfig: any
+        columns: any[]
+        loading: boolean
+        showPagination: boolean
+        paginationConfig: any
+        cacheKey: string
+        showToolbar: boolean
+        paginationFloat: string
+      }>
+    >(),
+    {
+      tableData: () => [],
+      tableConfig: {},
+      columns: () => [],
+      loading: false,
+      showPagination: true,
+      paginationConfig: {},
+      cacheKey: '',
+      showToolbar: false,
+      paginationFloat: 'end'
     }
-  })
+  )
 
   const emit = defineEmits(['update:paginationConfig', 'changePage']) // 声明emit
 
@@ -151,11 +117,13 @@ export default {
     location.pathname + location.hash + `?table-column${cacheKey ? '-' + cacheKey : ''}`
 
   const tableColumnConfig = computed(() => JSON.parse(localStorage['tableColumnConfig'] || JSON.stringify({})))
+
   /** 保存table配置项 */
   function setTableColumnConfig(value) {
     tableColumnConfig.value[generateStorageKey(props.cacheKey)] = value
     localStorage['tableColumnConfig'] = JSON.stringify(tableColumnConfig.value)
   }
+
   /** 获取table配置项 */
   function getTableColumnConfig(cacheKey, columns) {
     return (
@@ -174,44 +142,14 @@ export default {
   watch(
     () => props.columns,
     (n) => {
+      // TODO: 处理缓存内的列配置 需配合 Toolbar 的存储处理。
       const flag = tableColumnConfig.value[generateStorageKey(props.cacheKey)]
-      const resultArr = flag
-        ? columnConfig.value.map((item2: any) => {
-            const matchingItem1 = props?.columns?.find((item1: any) => {
-              if (item2.prop) {
-                return item1.prop === item2.prop
-              } else if (item2.type) {
-                return item1.type === item2.type
-              }
-            })
-            if (matchingItem1) {
-              if (matchingItem1.type) {
-                return matchingItem1 // 直接复用整个对象
-              } else {
-                return {
-                  ...item2, // 复用属性
-                  ...matchingItem1,
-                  fixed: matchingItem1.fixed, // 保持 arr1 中的 fixed 不变
-                  checked: item2.checked
-                }
-              }
-            } else {
-              return item2
-            }
-          })
-        : n
+
+      const resultArr = flag ? columnConfig.value : n
       tableColumn.value = resultArr.filter((obj) => obj.checked !== false)
     },
     { deep: true, immediate: true }
   )
-
-  // watch(
-  //   () => columnConfig.value,
-  //   (val) => {
-  //     columnConfig.value = val
-  //   },
-  //   { deep: true }
-  // )
 
   // 合并分页配置
   const _paginationConfig = computed(() => {
@@ -254,17 +192,24 @@ export default {
     return tabIndex
   }
 
+  watch(
+    () => columnConfig.value,
+    (val) => {
+      tableColumn.value = val
+    },
+    { deep: true }
+  )
+
   // 将table组件的全部方法暴露出去
   defineExpose({ element: jnTableRef })
 </script>
-<style scoped>
+
+<style lang="scss" scoped>
   .pagination {
     text-align: right;
     margin: 10px 0;
     display: flex;
   }
-</style>
-<style lang="scss" scoped>
   .el2-table-pagination {
     height: 100%;
     display: flex;
@@ -283,10 +228,6 @@ export default {
         .el-table__body {
           margin: 0;
           overflow: unset;
-          // th,
-          // td {
-          //   border: none !important;
-          // }
         }
       }
       tr {
@@ -297,11 +238,9 @@ export default {
         display: flex;
         justify-content: flex-end;
         margin-top: 20px;
-        // margin-right: 60px;
         margin-right: calc(2% - 20px);
         background-color: var(--el-bg-color);
       }
-      // ttable过长省略号
       .el-table {
         .el-tooltip {
           div {
