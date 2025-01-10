@@ -1,11 +1,3 @@
-<!--
- * @Author: yangyu 1431330771@qq.com
- * @Date: 2023-09-04 23:53:52
- * @LastEditors: yangyu 1431330771@qq.com
- * @LastEditTime: 2023-09-27 14:08:34
- * @FilePath: \jnf-ui-master\docs\components\index.md
- * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
--->
 ### 快速上手
 
 ::: tip 提示

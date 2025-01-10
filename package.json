@@ -75,8 +75,7 @@
     "vue": "3.5.13",
     "vue-eslint-parser": "^9.4.3",
     "vue-router": "^4.5.0",
-    "vue-tsc": "^0.40.13",
-    "vuedraggable": "^4.1.0"
+    "vue-tsc": "^0.40.13"
   },
   "keywords": [
     "element-ui",
@@ -100,6 +99,7 @@
     "@vue-office/excel": "^1.7.14",
     "@vue-office/pdf": "^1.6.5",
     "lodash": "^4.17.21",
-    "unplugin-vue-components": "^0.28.0"
+    "unplugin-vue-components": "^0.28.0",
+    "vuedraggable": "^4.1.0"
   }
 }

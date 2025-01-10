@@ -3,7 +3,7 @@
  * @Author: wangChao 6141364@qq.com
  * @Date: 2024-06-27 11:11:04
  * @LastEditors: wangChao 6141364@qq.com
- * @LastEditTime: 2025-01-10 09:59:51
+ * @LastEditTime: 2025-01-10 10:16:18
  * @FilePath: \el2package-ui\packages\index.ts
  * Endless Story. - NANA
  */
@@ -18,8 +18,7 @@ import El2Form from './Form'
 import El2Detail from './Detail'
 import El2Table from './Table'
 import El2FormInTable from './FormInTable'
-
-import JnToolbar from './JnToolbar'
+import El2Toolbar from './Toolbar'
 import VersionTag from './VersionTag' // 版本号内部文档使用
 
 // 存储组件列表
@@ -35,8 +34,7 @@ const components: {
   El2Detail,
   El2Table,
   El2FormInTable,
-
-  JnToolbar,
+  El2Toolbar,
   VersionTag
 }
 // 插件声明：声明所有插件
@@ -71,7 +69,7 @@ export {
   El2Detail,
   El2Table,
   El2FormInTable,
-  JnToolbar,
+  El2Toolbar,
   VersionTag
 }
 export default {

@@ -3,7 +3,7 @@
  * @Author: wangChao 6141364@qq.com
  * @Date: 2024-06-27 11:11:04
  * @LastEditors: wangChao 6141364@qq.com
- * @LastEditTime: 2025-01-09 15:04:35
+ * @LastEditTime: 2025-01-10 13:46:20
  * @FilePath: \el2package-ui\packages\Select\src\index.vue
  * Endless Story. - NANA
 -->
@@ -31,26 +31,25 @@
     ></el-option>
   </el-select>
 </template>
-<script lang="ts">
-  export default {
-    name: 'JnSelect'
-  }
-</script>
+
 <script setup lang="ts">
   type Props = {
-    modelValue: string | number | Array<string | number>
+    modelValue?: string | number | Array<string | number>
     // 是否多选
-    multiple: boolean
+    multiple?: boolean
     // 选择框宽度
-    width: string
+    width?: string
     // 传入的option数组中，要作为最终选择项的键值key
-    valueKey: string
+    valueKey?: string
     // 传入的option数组中，要作为显示项的键值名称
-    labelKey: string
+    labelKey?: string
     // 下拉框组件数据源
-    optionSource: any[]
+    optionSource?: any[]
   }
-  const props = withDefaults(defineProps<Props>(), {})
+  const props = withDefaults(defineProps<Props>(), {
+    labelKey: 'label',
+    valueKey: 'value'
+  })
   const emits = defineEmits(['update:modelValue'])
 
   let childSelectedValue: any = computed({
