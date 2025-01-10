@@ -10,7 +10,7 @@ hero:
   text: Vue3 管理端<br/>基础组件库
   tagline: 基于Element-plus二次封装 —— 基础组件文档
   image:
-    src: /img/home.png
+    src: /img/bg.svg
     alt: el2package-UI
   actions:
     - theme: brand
