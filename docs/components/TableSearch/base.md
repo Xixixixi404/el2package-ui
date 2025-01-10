@@ -1,8 +1,9 @@
-
-# jn-table-search组件
+# TableSearch组件
 
 ### 基础用法
 
-:::demo `继承el-form所有属性` <br/><br/>
+继承el-form所有属性
+
+:::demo
 TableSearch/base
 :::

@@ -45,28 +45,19 @@
 </template>
 
 <script setup lang="ts">
-  let props = defineProps({
-    // modelValue: {
-    //   type: Object,
-    //   default: () => {},
-    // },
-    rowsTotal: {
-      type: Number,
-      default: 999999
-    },
-    searchParamet: {
-      type: Object,
-      default: () => {}
-    },
-    formData: {
-      type: Object,
-      default: () => {}
-    },
-    customCol: {
-      type: Boolean,
-      default: false
+  let props = withDefaults(
+    defineProps<{
+      rowsTotal: number
+      searchParamet: any
+      formData: any
+      customCol: boolean
+    }>(),
+    {
+      rowsTotal: 999999,
+      searchParamet: {},
+      formData: {}
     }
-  })
+  )
 
   const $emit = defineEmits([
     /**
@@ -77,17 +68,14 @@
     'update:formData'
   ])
   const searchValue = ref(props.formData || {})
-  // interface SubListItem {
-  //   id: number;
-  //   name: string;
-  // }
   const searchFormRef = ref()
   const subListOpenFlag = ref(false)
   const subListRef = ref()
   const changeExpand = () => {
     subListOpenFlag.value = !subListOpenFlag.value
     searchFormRef.value.calculateShowCol(subListOpenFlag.value)
-  } /** 重置 */
+  }
+
   const resetSearchForm = () => {
     searchFormRef.value.resetFields()
     // $emit('update:formData', {})
@@ -95,11 +83,6 @@
       current: 1
     })
   }
-  onMounted(() => {
-    // searchFormRef?.value.initForm({
-    //   formData: props.formData,
-    // })
-  })
 
   // 单纯重置表单
   const resetSearchFormParams = () => {
@@ -121,6 +104,7 @@
 
     $emit('search', { ...trimmedParams, current: 1 })
   }
+
   // 暴露重置方法
   defineExpose({
     resetSearchForm,
