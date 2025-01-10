@@ -10,12 +10,18 @@ export default defineConfig({
   themeConfig: {
     logo: '/favicon.ico',
     siteTitle: 'El2package-UI',
-    outline: 3,
+    outline: {
+      // 侧边栏配置
+      level: 2,
+      label: 'CONTENTS'
+    },
     socialLinks: [
+      // 社交链接配置
       { icon: 'gitee', link: 'https://gitee.com/xiaoxi77/el2package-ui' }
       // { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
     ],
     nav: [
+      // 导航栏配置
       {
         text: '安装指南',
         link: '/guide/'

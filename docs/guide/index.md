@@ -1,16 +1,6 @@
-<!--
- * @Description:
- * @Author: wangChao 6141364@qq.com
- * @Date: 2025-01-09 10:39:29
- * @LastEditors: wangChao 6141364@qq.com
- * @LastEditTime: 2025-01-09 13:23:46
- * @FilePath: \el2package-ui\docs\guide\index.md
- * Endless Story. - NANA
--->
-
 # 安装
 
-## 兼容性 &nbsp;<VersionTag/>
+## 兼容性 <VersionTag/>
 
 El2package-UI 是基于 Element Plus <VersionTag :version="version"/> 二次封装而来。 <br>
 
@@ -22,7 +12,11 @@ so: 目前 El2package-UI 兼容性和 Element Plus 的兼容性保持一致。�
 
 :::
 
-## 选择一个你喜欢的包管理器
+## 使用包管理器
+
+建议您使用包管理器（如 NPM、Yarn 或 pnpm）安装 El2package-UI，然后您就可以使用打包工具，例如 Vite 或 webpack。
+
+# 选择一个你喜欢的包管理器
 
 ::: code-group
 
@@ -36,9 +30,13 @@ pnpm add el2package-ui -S
 
 :::
 
-### 使用
+## 使用
 
-```js
+### 完整引入​
+
+如果你对打包后的文件大小不是很在乎，使用完整导入将会更方便。
+
+```TypeScript
 // main.ts
 import el2package-ui from 'el2package-ui'
 import 'el2package-ui/lib/style.css'
@@ -48,10 +46,12 @@ app.use(el2package-ui)
 app.mount('#app')
 ```
 
-### el2package-ui 组件 Vue - Official 类型提示
+### Volar 支持
 
-```js
-// tsconfig.json文件中添加以下
+如果您使用 Volar，请在 tsconfig.json 中通过 compilerOptions.type 指定全局组件类型。
+
+```TypeScript
+// tsconfig.json
 
 compilerOptions：{
   "types": [
