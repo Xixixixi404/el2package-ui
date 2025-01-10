@@ -1,6 +1,6 @@
 {
   "name": "el2package-ui",
-  "version": "2.0.0",
+  "version": "2.0.1-beta.0",
   "description": "基于Element-plus二次封装基础组件",
   "author": "Xixixixi404",
   "license": "MIT",
