@@ -1,11 +1,11 @@
 <template>
   <!-- 数据表格 -->
   <el-table
-    class="el2-form-in-table"
     ref="jnFormTableRef"
+    v-loading="loading"
+    class="el2-form-in-table"
     :data="tableData"
     v-bind="$attrs"
-    v-loading="loading"
   >
     <!-- 递归渲染多级表头 -->
     <template
@@ -104,14 +104,14 @@
             <!-- 单个单元格编辑 -->
             <template v-else-if="column?.hasOwnProperty('configEdit') && !column.slotName">
               <single-edit-cell
-                :configEdit="column.configEdit"
+                v-bind="$attrs"
+                ref="editCell"
                 v-model="scope.row![column.prop!]"
+                :configEdit="column.configEdit"
                 :prop="column.prop"
                 :scope="scope"
                 :formData="formData"
                 :disabled="disabled"
-                v-bind="$attrs"
-                ref="editCell"
               >
                 <slot
                   v-if="column.configEdit && column.configEdit.editSlotName"
@@ -136,9 +136,9 @@
 
   <!-- 分页配置 -->
   <div
+    v-if="showPagination"
     class="pagination"
     :style="{ justifyContent: paginationFloat }"
-    v-if="showPagination"
   >
     <Pagination
       :pageConfig="_paginationConfig"
@@ -151,65 +151,32 @@
   import RenderCol from './renderCol.vue'
   import Pagination from './Pagination.vue' // 分页组件
   import SingleEditCell from './singleEditCell.vue'
-  // 定义组件接收的prop属性
-  const props = defineProps({
-    // 表格源数据
-    tableData: {
-      type: Array,
-      default: () => []
-    },
-    formData: {
-      type: Object,
-      default: () => {}
-    },
-    /**
-     * 是否禁用该表单
-     */
-    disabled: {
-      type: Boolean,
-      default: false
-    },
-    ruleKey: {
-      type: String,
-      default: ''
-    },
-    //   表格配置项
-    tableConfig: {
-      type: Object,
-      default: () => {}
-    },
-    //   表格列配置
-    columns: {
-      type: Array as PropType<any[]>,
-      default: () => <any>[]
-    },
-    //   加载loading
-    loading: {
-      type: Boolean,
-      default: false
-    },
-    isShowAdd: {
-      type: Boolean,
-      default: true
-    },
-    //   是否显示分页
-    showPagination: {
-      type: Boolean,
-      default: true
-    },
-    // 分页配置
-    paginationConfig: {
-      type: Object,
-      default: () => {}
-    },
-    /**
-     * 分页居左/居右
-     */
-    paginationFloat: {
-      type: String,
-      default: 'end'
+
+  const props = withDefaults(
+    defineProps<{
+      tableData: any[]
+      formData: any
+      paginationConfig?: any
+      paginationFloat?: string
+      showPagination?: boolean
+      disabled?: boolean
+      columns: any[]
+      ruleKey?: string
+      loading?: boolean
+    }>(),
+    {
+      paginationConfig: () => ({
+        pageSize: 10,
+        currentPage: 1,
+        total: 0
+      }),
+      disabled: false,
+      columns: () => [],
+      ruleKey: 'id',
+      loading: false
     }
-  })
+  )
+
   const emit = defineEmits(['update:paginationConfig', 'changePage']) // 声明emit
 
   // const jnTableRef = ref<HTMLElement | null>(null) // 表格ref
@@ -269,15 +236,14 @@
     element: jnFormTableRef
   })
 </script>
-<style scoped>
+
+<style lang="scss" scoped>
   .pagination {
     text-align: right;
     margin: 10px 0;
     display: flex;
     width: 100%;
   }
-</style>
-<style lang="scss" scoped>
   .el2-table {
     z-index: 0;
     background-color: var(--el-bg-color);
