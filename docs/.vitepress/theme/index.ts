@@ -3,8 +3,8 @@
  * @Author: wangchao 6141364@qq.com
  * @Date: 2024-06-27 11:11:04
  * @LastEditors: wangChao 6141364@qq.com
- * @LastEditTime: 2025-01-09 13:53:45
- * @FilePath: \el2package-ui\docs\.vitepress\theme\index.ts
+ * @LastEditTime: 2025-01-13 13:58:21
+ * @FilePath: \el2package-ui-new\docs\.vitepress\theme\index.ts
  */
 import DefaultTheme from 'vitepress/theme'
 
@@ -20,7 +20,7 @@ import { VPDemo } from '../vitepress'
 /**
  * @description: 引入组件库 并在全局注册
  */
-import el2packageUi from '../../../packages'
+import el2packageUi from '../../../packages/components/dist/es/index'
 import '../../public/css/index.css'
 
 // import '@vue-office/excel/lib/index.css'

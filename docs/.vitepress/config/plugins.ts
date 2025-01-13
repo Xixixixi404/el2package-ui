@@ -3,8 +3,8 @@
  * @Author: wangChao 6141364@qq.com
  * @Date: 2024-06-27 11:11:04
  * @LastEditors: wangChao 6141364@qq.com
- * @LastEditTime: 2025-01-08 15:33:11
- * @FilePath: \el2package-ui\docs\.vitepress\config\plugins.ts
+ * @LastEditTime: 2025-01-13 13:42:39
+ * @FilePath: \el2package-ui-new\docs\.vitepress\config\plugins.ts
  * Endless Story. - NANA
  */
 import path from 'path'
@@ -52,7 +52,7 @@ export const mdPlugin = (md: typeof localMd) => {
 
         if (sourceFileToken.type === 'inline') {
           // 读取示列代码文件
-          source = fs.readFileSync(path.resolve(docRoot, 'examples', `${sourceFile}.vue`), 'utf-8')
+          source = fs.readFileSync(path.resolve(docRoot, `${sourceFile}.vue`), 'utf-8')
         }
         if (!source) throw new Error(`Incorrect source file: ${sourceFile}`)
 

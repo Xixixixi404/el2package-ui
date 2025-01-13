@@ -1,0 +1,22 @@
+{
+  "private": true,
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "chalk": "^5.4.1",
+    "consola": "^3.3.3",
+    "escape-html": "^1.0.3",
+    "markdown-it": "^14.1.0",
+    "markdown-it-container": "^4.0.0",
+    "normalize.css": "^8.0.1",
+    "prismjs": "^1.29.0"
+  }
+}

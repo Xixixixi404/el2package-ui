@@ -11,6 +11,6 @@
     "noImplicitAny": false,
     "skipLibCheck": true,
     "jsx": "preserve",
-    "types": ["vite/client"]
+    "types": ["vite/client", "el2package-ui/index.d.ts"]
   }
 }

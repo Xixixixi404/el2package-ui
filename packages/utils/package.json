@@ -1,0 +1,17 @@
+{
+  "name": "@el2package-ui/utils",
+  "private": false,
+  "version": "1.0.0",
+  "description": "el2package-ui 配套 utils",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "keywords": [],
+  "author": "Xixixixi404",
+  "license": "MIT"
+}

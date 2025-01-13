@@ -3,12 +3,16 @@
  * @Author: wangChao 6141364@qq.com
  * @Date: 2024-06-27 11:11:04
  * @LastEditors: wangChao 6141364@qq.com
- * @LastEditTime: 2025-01-09 13:58:15
- * @FilePath: \el2package-ui\docs\.vitepress\vitepress\components\vp-demo\vp-example.vue
+ * @LastEditTime: 2025-01-13 14:07:37
+ * @FilePath: \el2package-ui-new\docs\.vitepress\vitepress\components\vp-demo\vp-example.vue
  * Endless Story. - NANA
 -->
 <template>
   <ClientOnly>
+    <div>
+      123123123
+      <El2Button>123</El2Button>
+    </div>
     <div class="example-component">
       <component
         :is="dynamicComponent"
@@ -39,9 +43,10 @@
   onBeforeMount(() => {
     // 匹配到的文件默认是懒加载的，通过动态导入实现，并会在构建时分离为独立的 chunk。如果你倾向于直接引入所有的模块（例如依赖于这些模块中的副作用首先被应用），你可以传入 { eager: true } 作为第二个参数：
     // TODO: 等待更换
-    const modules = import.meta.glob(`../../../../examples/*/*.vue`, {
+    const modules = import.meta.glob(`/examples/*/*.vue`, {
       eager: true
     })
+    
     // 动态加载示列组件
     for (const modulesKey in modules) {
       const module = modules[modulesKey]
