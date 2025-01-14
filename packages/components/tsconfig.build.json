@@ -3,8 +3,23 @@
   "include": [
     "src",
   ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "src/Toolbar"
+  ],
   "compilerOptions": {
-    "moduleResolution": "node",
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noImplicitAny": false,
+    "skipLibCheck": true,
+    "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
       "@/": [
@@ -14,10 +29,8 @@
     "references": [
       {
         "path": "./tsconfig.node.json"
-      },
-      {
-        "path": "./tsconfig.app.json"
       }
-    ]
-  }
+    ],
+    "types": ["vite/client", "./auto-imports.d.ts"]
+  },
 }

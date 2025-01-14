@@ -1,6 +1,7 @@
 .DS_Store
 node_modules
-/dist
+dist
+es
 lib
 umd
 # 忽略目录
@@ -12,6 +13,8 @@ docs/.vitepress/.temp
 docs/.vitepress/cache
 docs/.vitepress/cache/deps/
 docs/.vitepress/dist
+
+
 
 # local env files
 .env.local

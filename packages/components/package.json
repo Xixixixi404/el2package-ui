@@ -1,18 +1,8 @@
 {
   "name": "el2package-ui",
   "private": false,
-  "version": "2.0.1-beta.1d",
-  "main": "dist/es/index.js",
-  "module": "dist/es/index.js",
-  "style": "dist/es/style.css",
-  "type": "module",
-  "types": "dist/types/index.d.ts",
+  "version": "2.0.2",
   "description": "基于Element-plus二次封装基础组件",
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "lint": "eslint ./src/**/*.{js,jsx,vue,ts,tsx} --fix"
-  },
   "keywords": [
     "element-ui",
     "element-plus",
@@ -25,14 +15,34 @@
     "el2package",
     "Xixixixi404"
   ],
+  "license": "MIT",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "style": "es/el2package-ui.css",
+  "types": "es/index.d.ts",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./es/index.d.ts",
+      "import": "./es/index.js",
+      "require": "./lib/index.js"
+    },
+    "./global": {
+      "types": "./global.d.ts"
+    }
+  },
   "files": [
-    "dist",
-    "global.d.ts"
+    "es",
+    "lib",
+    "global.d.ts",
+    "LICENSE",
+    "README.md"
   ],
   "author": "Xixixixi404",
-  "license": "MIT",
   "dependencies": {
-    "@el2package-ui/utils": "workspace:^1.0.0"
+    "@el2package-ui/utils": "1.0.0"
   },
-  "devDependencies": {}
+  "scripts": {
+    "push": "publish.sh"
+  }
 }

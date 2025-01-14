@@ -1,13 +1,3 @@
-<!--
- * @Description:
- * @Author: wangChao 6141364@qq.com
- * @Date: 2024-06-27 11:11:04
- * @LastEditors: wangChao 6141364@qq.com
- * @LastEditTime: 2025-01-09 15:26:00
- * @FilePath: \el2package-ui\docs\components\Select\base.md
- * Endless Story. - NANA
--->
-
 # Select 下拉选择组件
 
 :::tip tips

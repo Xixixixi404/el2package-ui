@@ -1,12 +1,3 @@
-/*
- * @Description:
- * @Author: wangChao 6141364@qq.com
- * @Date: 2024-06-27 11:11:04
- * @LastEditors: wangChao 6141364@qq.com
- * @LastEditTime: 2025-01-13 13:42:39
- * @FilePath: \el2package-ui-new\docs\.vitepress\config\plugins.ts
- * Endless Story. - NANA
- */
 import path from 'path'
 import fs from 'fs'
 // @ts-ignore

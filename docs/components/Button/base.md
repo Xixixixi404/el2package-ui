@@ -1,13 +1,3 @@
-<!--
- * @Description:
- * @Author: wangChao 6141364@qq.com
- * @Date: 2024-06-27 11:11:04
- * @LastEditors: wangChao 6141364@qq.com
- * @LastEditTime: 2025-01-09 15:19:27
- * @FilePath: \el2package-ui\docs\components\Button\base.md
- * Endless Story. - NANA
--->
-
 # Button 按钮组件(内置防抖)
 
 :::tip tips

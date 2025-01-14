@@ -1,17 +1,8 @@
-<!--
- * @Description: 
- * @Author: wangChao 6141364@qq.com
- * @Date: 2024-06-27 11:11:04
- * @LastEditors: wangChao 6141364@qq.com
- * @LastEditTime: 2025-01-09 15:22:20
- * @FilePath: \el2package-ui\docs\examples\Button\base.vue
- * Endless Story. - NANA
--->
 <template>
   <t-layout-page class="t_button_demo">
     <t-layout-page-item>
       <div style="display: flex; align-items: center">
-        <div style="font-weight: 700">试试防抖时间：</div>
+        <div style="font-weight: 700">试试防抖时间11：</div>
         <el-input-number
           v-model="time"
           style="width: 240px"
@@ -35,7 +26,6 @@
   </t-layout-page>
 </template>
 <script setup lang="ts">
-  import { ref } from 'vue'
   const time = ref(1000)
   const handleChange = (val) => {
     console.log('输入框的值：', val)

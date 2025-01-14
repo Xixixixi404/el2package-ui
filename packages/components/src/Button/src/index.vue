@@ -6,7 +6,6 @@
 </template>
 
 <script setup lang="ts" name="El2Button">
-import { ref } from 'vue'
 const props = defineProps({
   time: {
     type: Number,

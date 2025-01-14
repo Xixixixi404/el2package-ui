@@ -3,4 +3,4 @@ import { withInstall } from '@el2package-ui/utils'
 
 const El2Button = withInstall(Button)
 
-export default withInstall(El2Button)
+export default El2Button

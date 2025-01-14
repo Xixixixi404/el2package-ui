@@ -1,0 +1,21 @@
+{
+  "exclude": [
+    "node_modules",
+    "dist",
+    "src/Toolbar"
+  ],
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noImplicitAny": false,
+    "skipLibCheck": true,
+    "jsx": "preserve",
+    "types": ["vite/client", "element-plus/global", "./packages/components/auto-imports.d.ts"]
+  }
+}

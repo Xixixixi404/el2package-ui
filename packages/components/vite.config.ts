@@ -21,9 +21,9 @@ export default defineConfig({
       include: [/\.[tj]sx?$/, /\.vue$/, /\.vue\?vue/, /\.md$/],
       imports: ['vue', '@vueuse/core'],
       //注意这个配置和src同级
-      dts: false // 使用ts时关闭
+      dts: resolve(__dirname, 'auto-imports.d.ts')
     }),
-    dts({ tsconfigPath: "./tsconfig.build.json", outDir: './dist/types' }), // ts声明文件
+    dts({ tsconfigPath: './tsconfig.build.json', outDir: ['es/', 'lib/'], entryRoot: 'src' }), // ts声明文件 和打包后的文件保持一致
     viteCompression({
       verbose: true,
       disable: false, // 不禁用压缩
@@ -45,27 +45,59 @@ export default defineConfig({
     rollupOptions: {
       // 忽略打包vue文件
       external: ['vue'],
-      input: ['./src/index.ts'],
+      input: ['src/index.ts'],
       output: [
         {
           format: 'es',
           entryFileNames: '[name].js',
           preserveModules: true,
           // 配置打包根目录
-          dir: 'dist/es',
-          preserveModulesRoot: 'src'
-        },
+          dir: 'es',
+          preserveModulesRoot: 'src',
+          assetFileNames: (assetInfo: any) => {
+            // 设置不同类型文件的输出路径及命名规则
+            if (
+              assetInfo.type === 'asset' &&
+              /\.(jpe?g|png|gif|svg)$/i.test(assetInfo.name)
+            ) {
+              return 'img/[name].[hash].[ext]' // 图像文件输出路径及命名规则
+            }
+            if (
+              assetInfo.type === 'asset' &&
+              /\.(ttf|woff|woff2|eot)$/i.test(assetInfo.name)
+            ) {
+              return 'fonts/[name].[hash].[ext]' // 字体文件输出路径及命名规则
+            }
+            return 'style.css' // 其他资源文件输出路径及命名规则
+          }
+         },
         {
           format: 'cjs',
           entryFileNames: '[name].js',
           preserveModules: true,
-          dir: 'dist/lib',
-          preserveModulesRoot: 'src'
+          dir: 'lib',
+          preserveModulesRoot: 'src',
+          assetFileNames: (assetInfo: any) => {
+            // 设置不同类型文件的输出路径及命名规则
+            if (
+              assetInfo.type === 'asset' &&
+              /\.(jpe?g|png|gif|svg)$/i.test(assetInfo.name)
+            ) {
+              return 'img/[name].[hash].[ext]' // 图像文件输出路径及命名规则
+            }
+            if (
+              assetInfo.type === 'asset' &&
+              /\.(ttf|woff|woff2|eot)$/i.test(assetInfo.name)
+            ) {
+              return 'fonts/[name].[hash].[ext]' // 字体文件输出路径及命名规则
+            }
+            return 'style.css' // 其他资源文件输出路径及命名规则
+          }
         }
       ]
     },
     lib: {
-      entry: './index.ts'
+      entry: './src/index.ts'
     }
   },
   css: {

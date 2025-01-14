@@ -11,6 +11,6 @@
     "noImplicitAny": false,
     "skipLibCheck": true,
     "jsx": "preserve",
-    "types": ["vite/client", "el2package-ui/index.d.ts"]
+    "types": ["vite/client", "../packages/components/global.d.ts", "element-plus/global"]
   }
 }

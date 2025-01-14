@@ -2,10 +2,8 @@
   <t-layout-page>
     <t-layout-page-item>
       <el2-table-search
-        label-width="120px"
         :searchParamet="formOptions"
         :rowsTotal="1"
-        :customCol="true"
         :formData="searchValue"
         @search="search"
       />
@@ -33,7 +31,7 @@
       placeholder: '请输入销售组织',
       required: true,
       rules: [],
-      colSize: 12,
+      colSize: 6,
       attrs: {
         clearable: true,
         multiple: true
@@ -74,6 +72,15 @@
     saleGroup: {
       type: 'input',
       label: '销售组描述',
+      placeholder: '请输入销售组描述',
+      rules: [],
+      attrs: {
+        clearable: true
+      }
+    },
+    saleGroup2: {
+      type: 'input',
+      label: '销售组描述222',
       placeholder: '请输入销售组描述',
       rules: [],
       attrs: {

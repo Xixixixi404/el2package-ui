@@ -1,11 +1,3 @@
-/*
- * @Description:
- * @Author: wangchao 6141364@qq.com
- * @Date: 2024-06-27 11:11:04
- * @LastEditors: wangChao 6141364@qq.com
- * @LastEditTime: 2025-01-13 13:58:21
- * @FilePath: \el2package-ui-new\docs\.vitepress\theme\index.ts
- */
 import DefaultTheme from 'vitepress/theme'
 
 import ElementPlus from 'element-plus'
@@ -20,7 +12,7 @@ import { VPDemo } from '../vitepress'
 /**
  * @description: 引入组件库 并在全局注册
  */
-import el2packageUi from '../../../packages/components/dist/es/index'
+import el2packageUi from '../../../packages/components/src/index'
 import '../../public/css/index.css'
 
 // import '@vue-office/excel/lib/index.css'
@@ -37,6 +29,7 @@ export default {
     for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
       ctx.app.component(key, component)
     }
+    
     // 全局注册基础组件
     ctx.app.use(el2packageUi)
 
