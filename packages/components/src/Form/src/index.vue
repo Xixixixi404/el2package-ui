@@ -421,7 +421,6 @@
 
   .el2-form {
     width: 100%;
-    padding-bottom: 10px;
 
     // 新版title样式
     .secondary-tit {

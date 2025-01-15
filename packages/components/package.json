@@ -1,7 +1,7 @@
 {
   "name": "el2package-ui",
   "private": false,
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "基于Element-plus二次封装基础组件",
   "keywords": [
     "element-ui",
@@ -29,7 +29,8 @@
     },
     "./global": {
       "types": "./global.d.ts"
-    }
+    },
+    "./es/style.css": "./es/style.css"
   },
   "files": [
     "es",

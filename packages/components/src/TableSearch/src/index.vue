@@ -2,7 +2,7 @@
   <div
     ref="subListRef"
     class="subList"
-  >{{ customCol }}
+  >
     <el2-form
       ref="searchFormRef"
       v-model="searchValue"

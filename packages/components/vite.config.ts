@@ -10,6 +10,23 @@ import viteCompression from 'vite-plugin-compression' // 静态资源压缩
 // import {visualizer} from 'rollup-plugin-visualizer' // 打包后的视图文件
 import dts from 'vite-plugin-dts'
 
+const chioeseExt = (assetInfo: any) => {
+    // 设置不同类型文件的输出路径及命名规则
+    if (
+      assetInfo.type === 'asset' &&
+      /\.(jpe?g|png|gif|svg)$/i.test(assetInfo.name)
+    ) {
+      return 'img/[name].[hash].[ext]' // 图像文件输出路径及命名规则
+    }
+    if (
+      assetInfo.type === 'asset' &&
+      /\.(ttf|woff|woff2|eot)$/i.test(assetInfo.name)
+    ) {
+      return 'fonts/[name].[hash].[ext]' // 字体文件输出路径及命名规则
+    }
+    return 'style.css' // 其他资源文件输出路径及命名规则
+  }
+
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
@@ -54,22 +71,7 @@ export default defineConfig({
           // 配置打包根目录
           dir: 'es',
           preserveModulesRoot: 'src',
-          assetFileNames: (assetInfo: any) => {
-            // 设置不同类型文件的输出路径及命名规则
-            if (
-              assetInfo.type === 'asset' &&
-              /\.(jpe?g|png|gif|svg)$/i.test(assetInfo.name)
-            ) {
-              return 'img/[name].[hash].[ext]' // 图像文件输出路径及命名规则
-            }
-            if (
-              assetInfo.type === 'asset' &&
-              /\.(ttf|woff|woff2|eot)$/i.test(assetInfo.name)
-            ) {
-              return 'fonts/[name].[hash].[ext]' // 字体文件输出路径及命名规则
-            }
-            return 'style.css' // 其他资源文件输出路径及命名规则
-          }
+          assetFileNames: chioeseExt
          },
         {
           format: 'cjs',
@@ -77,22 +79,7 @@ export default defineConfig({
           preserveModules: true,
           dir: 'lib',
           preserveModulesRoot: 'src',
-          assetFileNames: (assetInfo: any) => {
-            // 设置不同类型文件的输出路径及命名规则
-            if (
-              assetInfo.type === 'asset' &&
-              /\.(jpe?g|png|gif|svg)$/i.test(assetInfo.name)
-            ) {
-              return 'img/[name].[hash].[ext]' // 图像文件输出路径及命名规则
-            }
-            if (
-              assetInfo.type === 'asset' &&
-              /\.(ttf|woff|woff2|eot)$/i.test(assetInfo.name)
-            ) {
-              return 'fonts/[name].[hash].[ext]' // 字体文件输出路径及命名规则
-            }
-            return 'style.css' // 其他资源文件输出路径及命名规则
-          }
+          assetFileNames: chioeseExt
         }
       ]
     },
