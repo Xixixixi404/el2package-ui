@@ -12,6 +12,13 @@
       :customCol="props.customCol"
       v-bind="$attrs"
     >
+      <template
+        v-for="item in searchParamet"
+        :key="item.prop"
+        #[item.slotName]
+      >
+        <slot :name="item.slotName"></slot>
+      </template>
       <template #searchAction="scope">
         <el2-button
           type="primary"
@@ -50,7 +57,7 @@
       rowsTotal: number
       searchParamet: any
       formData: any
-      customCol: boolean
+      customCol?: boolean
     }>(),
     {
       rowsTotal: 999999,
@@ -66,7 +73,8 @@
      * @arg {object} params - {current?: number}
      */
     'search',
-    'update:formData'
+    'update:formData',
+    'reset'
   ])
   const searchValue = ref(props.formData || {})
   const searchFormRef = ref()
@@ -79,7 +87,7 @@
 
   const resetSearchForm = () => {
     searchFormRef.value.resetFields()
-    // $emit('update:formData', {})
+    $emit('reset')
     $emit('search', {
       current: 1
     })

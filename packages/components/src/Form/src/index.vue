@@ -203,8 +203,8 @@
   const calculateShowCol = (expand: boolean) => {
     for (const key in props.formOpts) {
       const item = props.formOpts[key]
-      if (item.attrs && !props.customCol) {
-        item.colSize = props.isSearch ? computed(getCol) : (item?.colSize ?? 12)
+      if (!props.customCol) {
+        item.colSize = props.isSearch ? computed(getCol).value : (item?.colSize ?? 12)
       }
       let state = props.isSearch
         ? expand
