@@ -56,7 +56,7 @@ app.mount('#app')
 compilerOptions：{
   "types": [
     ...
-    "el2package-ui/components.d.ts",
+    "el2package-ui/global",
     ...
   ],
 }

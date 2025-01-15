@@ -29,7 +29,10 @@ Vue.use(el2packageUi)
 // 在main.js中按下引入
 import 'el2package-ui/lib/style.css'
 // 单个.vue文件引入
-;<script setup lang="ts">
+;<script
+  setup
+  lang="ts"
+>
   import {(JnDetail, el2packageorm)} from "el2package-ui"
 </script>
 ```
@@ -40,7 +43,7 @@ import 'el2package-ui/lib/style.css'
 // 需要在使用的项目的tsconfig.json文件中添加以下
 compilerOptions：{
   "types": [
-      "el2package-ui/components.d.ts",
+      "el2package-ui/global",
     ],
 }
 
