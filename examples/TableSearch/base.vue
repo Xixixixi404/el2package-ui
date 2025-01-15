@@ -6,7 +6,11 @@
         :rowsTotal="1"
         :formData="searchValue"
         @search="search"
-      />
+      >
+        <template #x11>
+          <elButton>123</elButton>
+        </template>
+      </el2-table-search>
     </t-layout-page-item>
   </t-layout-page>
 </template>
@@ -25,13 +29,17 @@
   })
 
   const formOptions = ref({
+    x1: {
+      type: 'slot',
+      slotName: 'x11',
+      label: 'x1'
+    },
     saleOrg: {
       type: 'select',
       label: '销售组织111',
       placeholder: '请输入销售组织',
       required: true,
       rules: [],
-      colSize: 6,
       attrs: {
         clearable: true,
         multiple: true
