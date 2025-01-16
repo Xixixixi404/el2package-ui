@@ -1,3 +1,6 @@
-dist
-es
-lib
+tsconfig.json
+auto-imports.d.ts
+tsconfig.build.json
+vite.config.ts
+/src
+stats.html

@@ -1,7 +1,7 @@
 {
   "name": "el2package-ui",
   "private": false,
-  "version": "2.0.3",
+  "version": "2.1.1",
   "description": "基于Element-plus二次封装基础组件",
   "keywords": [
     "element-ui",
@@ -17,29 +17,16 @@
   ],
   "license": "MIT",
   "main": "lib/index.js",
-  "module": "es/index.js",
-  "style": "es/el2package-ui.css",
-  "types": "es/index.d.ts",
+  "module": "es/index.mjs",
+  "style": "dist/index.css",
+  "types": "dist/@types/index.d.ts",
   "type": "module",
-  "exports": {
-    ".": {
-      "types": "./es/index.d.ts",
-      "import": "./es/index.js",
-      "require": "./lib/index.js"
-    },
-    "./global": {
-      "types": "./global.d.ts"
-    },
-    "./es/style.css": "./es/style.css"
-  },
-  "files": [
-    "es",
-    "lib",
-    "global.d.ts",
-    "LICENSE",
-    "README.md"
-  ],
+  "sideEffects": false,
   "author": "Xixixixi404",
+  "peerDependencies": {
+    "vue": "^3.5.13",
+    "vuedraggable": "^4.1.0"
+  },
   "dependencies": {
     "@el2package-ui/utils": "1.0.0"
   },

@@ -1,4 +1,3 @@
-
 import type { Component, App } from 'vue'
 import TLayoutPage from './layout-page'
 import TLayoutPageItem from './layout-page-item'
@@ -9,7 +8,7 @@ import El2Form from './Form'
 import El2Detail from './Detail'
 import El2Table from './Table'
 import El2FormInTable from './FormInTable'
-// import El2Toolbar from './Toolbar'
+import El2Toolbar from './Toolbar'
 // import VersionTag from './VersionTag' // 版本号内部文档使用
 
 // 存储组件列表
@@ -25,7 +24,7 @@ const components: {
   El2Detail,
   El2Table,
   El2FormInTable,
-  // El2Toolbar,
+  El2Toolbar
   // VersionTag
 }
 
@@ -45,7 +44,7 @@ export {
   El2Detail,
   El2Table,
   El2FormInTable,
-  // El2Toolbar,
+  El2Toolbar
   // VersionTag
 }
 
