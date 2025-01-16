@@ -29,8 +29,5 @@
   },
   "dependencies": {
     "@el2package-ui/utils": "1.0.0"
-  },
-  "scripts": {
-    "push": "publish.sh"
   }
 }
