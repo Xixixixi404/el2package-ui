@@ -13,7 +13,7 @@ docs/.vitepress/.temp
 docs/.vitepress/cache
 docs/.vitepress/cache/deps/
 docs/.vitepress/dist
-
+.github
 
 
 # local env files
