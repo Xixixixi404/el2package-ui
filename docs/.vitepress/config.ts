@@ -17,16 +17,16 @@ export default defineConfig({
     },
     socialLinks: [
       // 社交链接配置
-      { icon: 'gitee', link: 'https://gitee.com/xiaoxi77/el2package-ui' }
-      // { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
+      { icon: 'gitee', link: 'https://gitee.com/xiaoxi77/el2package-ui' },
+      { icon: 'github', link: 'https://xixixixi404.github.io/el2package-ui/' }
     ],
     nav: [
       // 导航栏配置
       {
-        text: '安装指南',
+        text: '指南',
         link: '/guide/'
       },
-      { text: '基础组件', link: '/components/Button/base.md' }
+      { text: '组件', link: '/components/Button/base.md' }
     ],
     sidebar: {
       '/guide': [{ text: '安装指南', items: [{ text: '快速开始', link: '/guide/' }] }],

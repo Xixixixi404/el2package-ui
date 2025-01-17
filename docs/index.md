@@ -7,8 +7,8 @@ editLink: true
 lastUpdated: true
 hero:
   name: El2package-UI
-  text: Vue3 管理端<br/>基础组件库
-  tagline: 基于Element-plus二次封装 —— 基础组件文档
+  text: 适用于 Vue3 <br/>管理端页面快速开发
+  tagline: 基于Element-plus二次封装 —— 组件文档
   image:
     src: /img/bg.svg
     alt: el2package-UI

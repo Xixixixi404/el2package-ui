@@ -4,8 +4,7 @@
 
 > 基于 vue3+ ts+ Element-plus 二次封装组件
 > 这是我在学习 Vue3 中基于[Element-plus](https://element-plus.org/zh-CN/) 二次封装基础组件文档，希望对你有用。
-
-<!-- 可查看 [详细组件案例文档]() 预览 -->
+> 预览 [组件案例文档](https://xixixixi404.github.io/el2package-ui/)
 
 ## 安装依赖
 
