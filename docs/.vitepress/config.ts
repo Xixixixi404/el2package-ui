@@ -12,7 +12,7 @@ export default defineConfig({
     siteTitle: 'El2package-UI',
     outline: {
       // 侧边栏配置
-      level: 2,
+      level: [2, 6],
       label: 'CONTENTS'
     },
     socialLinks: [
