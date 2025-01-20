@@ -45,15 +45,15 @@
                   :scope="item"
                 ></slot>
               </div>
-              <slot
+              <el-col
                 v-else
-                :name="key"
-                :form-data="modelValue"
-                :schema="{ ...item }"
+                v-show="item.show"
+                :span="item?.colSize || 24"
               >
-                <el-col
-                  v-show="item.show"
-                  :span="item?.colSize"
+                <slot
+                  :name="item.slotName || key"
+                  :form-data="modelValue"
+                  :schema="{ ...item }"
                 >
                   <el-form-item
                     :prop="key"
@@ -63,7 +63,7 @@
                     <template v-if="!item?.hasOwnProperty('children')">
                       <slot
                         v-if="item.type === 'slot'"
-                        :name="item.slotName"
+                        :name="item.ItemSlotName || item.slotName"
                         :scope="item"
                       ></slot>
                       <component
@@ -101,11 +101,14 @@
                       </template>
                     </component>
                   </el-form-item>
-                </el-col>
-              </slot>
+                </slot>
+              </el-col>
             </template>
           </template>
-          <el-col :span="6">
+          <el-col
+            v-if="isSearch"
+            :span="6"
+          >
             <slot
               name="searchAction"
               :form="form"
@@ -200,11 +203,17 @@
       return 6
     }
   }
+
+  /**
+   * @description: 计算每行显示的col值，默认为24 占一整列
+   * @param {type} expand:
+   * @return {type}
+   */
   const calculateShowCol = (expand: boolean) => {
     for (const key in props.formOpts) {
       const item = props.formOpts[key]
       if (!props.customCol) {
-        item.colSize = props.isSearch ? computed(getCol).value : (item?.colSize ?? 12)
+        item.colSize = props.isSearch ? computed(getCol).value : (item?.colSize ?? 24)
       }
       let state = props.isSearch
         ? expand
@@ -215,6 +224,7 @@
           : true
       item.show = state
     }
+
     isShowExpand.value = expand ? !expand : sum.value <= 24 * props.rowsTotal
     sum.value = 6
   }
@@ -294,6 +304,8 @@
     }
     await nextTick()
     form.value?.clearValidate()
+
+    // 计算每行显示的列数
     calculateShowCol(false)
     isMethodCalled.value = false
   }
