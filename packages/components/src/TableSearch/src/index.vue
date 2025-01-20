@@ -21,6 +21,7 @@
       </template>
       <template #searchAction="scope">
         <el2-button
+          :time="time"
           type="primary"
           icon="Search"
           @click="handleSearch(scope.model)"
@@ -28,6 +29,7 @@
           查询
         </el2-button>
         <el2-button
+          :time="time"
           icon="Refresh"
           @click="resetSearchForm"
         >
@@ -35,6 +37,7 @@
         </el2-button>
         <el2-button
           v-if="!scope.isShowExpand"
+          :time="time"
           style="margin-left: 0"
           type="primary"
           link
@@ -54,16 +57,18 @@
 <script setup lang="ts">
   let props = withDefaults(
     defineProps<{
-      rowsTotal: number
-      searchParamet: any
-      formData: any
-      customCol?: boolean
+      rowsTotal?: number // 控制搜索栏默认展开行数
+      searchParamet: any // 搜索参数配置
+      formData: any // 绑定的数据
+      customCol?: boolean // 是否使用用户配置的 col 为 true 时将使用配置中的 colSize 属性配置。
+      time?: number // 防抖时间
     }>(),
     {
       rowsTotal: 999999,
       searchParamet: {},
       formData: {},
-      customCol: false
+      customCol: false,
+      time: 1000
     }
   )
 

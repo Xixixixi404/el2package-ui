@@ -51,7 +51,7 @@
                 :span="item?.colSize || 24"
               >
                 <slot
-                  :name="item.slotName || key"
+                  :name="key"
                   :form-data="modelValue"
                   :schema="{ ...item }"
                 >

@@ -4,8 +4,22 @@
       <El2TableSearch
         :searchParamet="formOptions"
         :formData="searchValue"
+        :time="0"
+        customCol
         @search="search"
-      ></El2TableSearch>
+      >
+        <template #paramsSlot>
+          <El2Button
+            type="primary"
+            style="margin-bottom: 10px"
+          >
+            paramsSlot
+          </El2Button>
+        </template>
+        <template #paramsSlotForItemSlot>
+          <El2Button type="primary">paramsSlotForItemSlot</El2Button>
+        </template>
+      </El2TableSearch>
     </t-layout-page-item>
   </t-layout-page>
 </template>
@@ -16,6 +30,16 @@
   })
 
   const formOptions = ref({
+    paramsSlot: {
+      type: 'slot',
+      slotName: 'paramsSlot',
+      label: 'params slot'
+    },
+    paramsSlotForItem: {
+      type: 'slot',
+      slotName: 'paramsSlotForItemSlot',
+      label: 'Slot For Item'
+    },
     params1: {
       type: 'select',
       label: 'params one',
@@ -38,8 +62,7 @@
     params2: {
       type: 'input',
       label: 'params two',
-      placeholder: 'placeholder',
-      rules: []
+      placeholder: 'placeholder'
     }
   })
 

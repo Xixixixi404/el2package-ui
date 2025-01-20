@@ -3,7 +3,10 @@
     <t-layout-page-item>
       <El2TableSearch
         :searchParamet="formOptions"
+        :rowsTotal="1"
         :formData="searchValue"
+        :time="0"
+        customCol
         @search="search"
       ></El2TableSearch>
     </t-layout-page-item>
@@ -20,6 +23,7 @@
       type: 'select',
       label: 'params one',
       placeholder: 'placeholder',
+      colSize: 12,
       children: [
         {
           label: 'label1',
@@ -39,7 +43,12 @@
       type: 'input',
       label: 'params two',
       placeholder: 'placeholder',
-      rules: []
+      colSize: 8
+    },
+    params3: {
+      type: 'input',
+      label: 'params three',
+      placeholder: 'placeholder'
     }
   })
 
