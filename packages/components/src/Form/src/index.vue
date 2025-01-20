@@ -123,46 +123,23 @@
 </template>
 
 <script setup lang="ts">
-  let props = defineProps({
-    modelValue: {
-      type: Object
-    },
-    formData: {
-      type: Object,
-      default: null
-    },
-    formOpts: {
-      type: Object,
-      default: () => ({})
-    },
-    /**
-     * 是否禁用该表单
-     */
-    disabled: {
-      type: Boolean,
-      default: false
-    },
-    /**
-     * 是否为搜索表单
-     */
-    isSearch: {
-      type: Boolean,
-      default: false
-    },
-    rowsTotal: {
-      type: Number,
-      default: 999999
-    },
-    // 是否为详情表单
-    isDetail: {
-      type: Boolean,
-      default: false
-    },
-    customCol: {
-      type: Boolean,
-      default: false
+  const props = withDefaults(
+    defineProps<{
+      modelValue: any // 绑定值
+      formOpts: any // 表单配置
+      disabled?: boolean // 是否禁用
+      isSearch?: boolean // 是否为搜索表单
+      rowsTotal?: number // 每行显示多少个表单项
+      isDetail?: boolean // 是否为详情表单
+      customCol?: boolean // 是否自定义列数
+    }>(),
+    {
+      formOpts: () => ({}),
+      disabled: false,
+      isSearch: false,
+      rowsTotal: 999999
     }
-  })
+  )
 
   let emits = defineEmits(['update:modelValue'])
   const sum = ref(6)
@@ -205,7 +182,7 @@
   }
 
   /**
-   * @description: 计算每行显示的col值，默认为24 占一整列
+   * @description: 计算每行显示的col值，默认为24 占一整行
    * @param {type} expand:
    * @return {type}
    */
