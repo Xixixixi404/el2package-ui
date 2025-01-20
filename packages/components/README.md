@@ -12,7 +12,7 @@
 pnpm install
 ```
 
-## 本地运行 vuepress 中组件文档
+## 本地运行 组件文档
 
 ```bash
 # 文档demo示例 基于 vue3 + vite 项目
