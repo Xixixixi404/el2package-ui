@@ -1,27 +1,8 @@
-# Select 下拉选择组件
+# El2Button 参数配置
 
-:::tip tips
-继承所有 el-select 属性<br/>
-`multiple` 为 `true` 时会自动添加全选选项
-:::
+## 下拉框组件
 
-### 单选
-
-:::demo
-Select/single
-:::
-
-### 多选
-
-多选时会自动添加 `全选` 选项
-
-:::demo
-Select/multiple
-:::
-
----
-
-### 代码示例
+### 1.代码示例：
 
 ```html
 <El2Select
@@ -33,7 +14,7 @@ Select/multiple
 />
 ```
 
-### Attributes
+### 2. 配置参数（Attributes）
 
 > 下拉选择组件（多选可使用全选功能）
 > 继承所有 ElSelect 的属性。<br/>

@@ -35,7 +35,7 @@
     // 传入的option数组中，要作为显示项的键值名称
     labelKey?: string
     // 下拉框组件数据源
-    optionSource?: any[]
+    optionSource: any[]
   }
   const props = withDefaults(defineProps<Props>(), {
     labelKey: 'label',
