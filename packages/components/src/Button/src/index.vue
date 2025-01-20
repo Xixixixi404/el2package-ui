@@ -8,12 +8,13 @@
 </template>
 
 <script setup lang="ts" name="El2Button">
-  const props = defineProps({
-    time: {
-      type: Number,
-      default: 1000
-    }
-  })
+  const props = withDefaults(
+    defineProps<{
+      time?: number
+    }>(),
+    { time: 1000 }
+  )
+
   // 抛出事件
   const emits = defineEmits(['click'])
   const record = ref(0)

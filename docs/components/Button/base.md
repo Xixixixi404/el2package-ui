@@ -12,7 +12,8 @@ Button/base
 
 ### Attributes
 
-继承 el-button所有属性
+> 继承所有 ElButton 的属性。<br/>
+> 详情可查看 [-> Element Plus Button](https://element-plus.org/zh-CN/component/button.html#button-%E5%B1%9E%E6%80%A7)
 
 | 参数 | 说明     | 类型   | 默认值(ms) |
 | :--- | :------- | :----- | :--------- |
