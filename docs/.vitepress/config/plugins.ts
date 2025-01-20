@@ -8,6 +8,8 @@ import mdContainer from 'markdown-it-container'
 import type Token from 'markdown-it/lib/token'
 import { highlight } from '../utils/highlight'
 import { docRoot } from './global'
+import prettier from '@prettier/sync'
+
 const localMd = MarkdownIt()
 
 interface ContainerOpts {
@@ -24,7 +26,7 @@ interface ContainerOpts {
  * @param {typeof} md: MarkdownIt 配置
  * @return {string} Demo组件
  */
-export const mdPlugin = (md: typeof localMd) => {
+export const mdPlugin = (md: any) => {
   md.use(mdContainer, 'demo', {
     validate(params) {
       return !!params.trim().match(/^demo\s*(.*)$/)
@@ -47,12 +49,23 @@ export const mdPlugin = (md: typeof localMd) => {
         }
         if (!source) throw new Error(`Incorrect source file: ${sourceFile}`)
 
+        // 正则表达式匹配并移除 <t-layout-page> 和 <t-layout-page-item> 标签及其内容
+        const cleanedContent = source
+          .replace(/<t-layout-page[\s\S]*?>([\s\S]*?)<\/t-layout-page>/g, '$1') // 移除 <t-layout-page> 标签，但保留内部内容
+          .replace(/<t-layout-page-item[\s\S]*?>([\s\S]*?)<\/t-layout-page-item>/g, '$1') // 移除 <t-layout-page-item> 标签，但保留内部内容
+
+        // 使用 Prettier 格式化处理后的内容，自动加载项目中的配置
+        const formattedContent = prettier.format(cleanedContent, {
+          parser: 'vue' // 指定解析器为 vue
+        })
+        console.log(formattedContent)
+
         // opening tag
         return `<Demo
-        source="${encodeURIComponent(highlight(source, 'vue'))}"
-        path="${sourceFile}"
-        raw-source="${encodeURIComponent(source)}"
-        description="${encodeURIComponent(localMd.render(description))}">`
+              source="${encodeURIComponent(highlight(formattedContent, 'vue'))}"
+              path="${sourceFile}"
+              raw-source="${encodeURIComponent(cleanedContent)}"
+              description="${encodeURIComponent(localMd.render(description))}">`
       } else {
         // 闭合标签
         // closing tag
