@@ -2,7 +2,7 @@
   <t-layout-page>
     <El2-select
       v-model="selectVlaue"
-      placeholder="请选择工序"
+      placeholder="请选择"
       :optionSource="stepList"
       valueKey="label"
       width="200px"
