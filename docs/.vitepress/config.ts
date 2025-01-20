@@ -41,12 +41,12 @@ export default defineConfig({
         {
           text: '复杂组件',
           items: [
+            { text: 'Form 表单', link: '/components/Form/base.md' },
             {
               text: 'TableSearch 条件查询',
               link: '/components/TableSearch/base.md'
             },
             { text: 'Detail 详情', link: '/components/Detail/base.md' },
-            { text: 'Form 表单', link: '/components/Form/base.md' },
             { text: 'Table 表格', link: '/components/Table/base.md' },
             {
               text: 'FormInTable 可编辑表格',
