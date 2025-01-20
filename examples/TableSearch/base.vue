@@ -39,7 +39,6 @@
       type: 'input',
       label: 'params two',
       placeholder: 'placeholder',
-      rules: []
     }
   })
 

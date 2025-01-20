@@ -116,7 +116,7 @@
       }
     }
 
-    $emit('search', { ...trimmedParams, current: 1 })
+    $emit('search', { ...trimmedParams })
   }
 
   // 暴露重置方法
