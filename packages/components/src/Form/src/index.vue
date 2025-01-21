@@ -75,6 +75,7 @@
                         v-on="cEvent(item)"
                       >
                         <template #[item?.attrs?.slot?.name]>
+                          <!-- TODO: 兼容多个 slot 插槽 -->
                           <component :is="item?.attrs?.slot?.render"></component>
                         </template>
                       </component>
@@ -306,11 +307,10 @@
   // 子子组件value
   const compChildValue = computed(() => {
     return (opt: any, child) => {
-      switch (opt.type) {
-        case 'select':
-          return child
-        default:
-          return child[opt.attrs?.props?.value || 'value']
+      if (opt.type === 'select' && opt.attrs?.valueKey) {
+        return child
+      } else {
+        return child[opt.attrs?.props?.value || 'value']
       }
     }
   })

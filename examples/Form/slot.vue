@@ -84,19 +84,19 @@
         slot: {
           name: 'suffix',
           render: () => {
-            return 'prefix'
+            return 'suffix'
           }
         }
       }
     },
-    suffixSlot1: {
+    prefixSlot: {
       type: 'input',
-      label: 'suffixSlot1',
-      placeholder: 'placeholder',
+      label: 'prefixSlot',
+      placeholder: '--placeholder',
       colSize: 24,
       attrs: {
         slot: {
-          name: 'suffix',
+          name: 'prefix',
           render: () => {
             return 'prefix'
           }
@@ -113,36 +113,41 @@
     },
     select: {
       type: 'select',
-      label: 'select',
+      label: 'select label',
       placeholder: 'placeholder',
+      required: true,
+      rules: [],
+      colSize: 24,
       attrs: {
+        multiple: true,
         filterable: true,
         remote: true,
         reservekeyword: true,
         clearable: true
+        // valueKey: 'id'
       },
       events: {
         change: ($event, val) => changeSaleOrg($event, val)
       },
       children: [
         {
-          label: 'label one',
-          value: 'one'
+          label: '前纺一车间',
+          value: 1
         },
         {
-          label: 'label two',
-          value: 'two'
+          label: '前纺二车间',
+          value: 2
         },
         {
-          label: 'label three',
-          value: 'three'
+          label: '前纺三车间',
+          value: 3
         }
       ]
     },
-    saleDept: {
+    input: {
       type: 'input',
-      label: '销售部门描述',
-      placeholder: '请输入销售部门描述',
+      label: 'input label',
+      placeholder: 'placeholder',
       required: true,
       rules: [],
       colSize: 24,
@@ -152,10 +157,9 @@
         }
       }
     },
-    saleDeptCode1: {
+    radioGroup: {
       type: 'radio-group',
-      label: '销售部门代码111',
-      placeholder: '请输入销售部门代码',
+      label: 'radioGroup label',
       required: true,
       rules: [],
       colSize: 24,
@@ -170,23 +174,22 @@
       },
       children: [
         {
-          label: '前纺一车间1111',
-          value: 'W1'
+          label: 'radio one',
+          value: 'r1'
         },
         {
-          label: '前纺二车间',
-          value: 'W2'
+          label: 'radio two',
+          value: 'r2'
         },
         {
-          label: '前纺三车间',
-          value: 'W3'
+          label: 'radio three',
+          value: 'r3'
         }
       ]
     },
-    saleDeptCode221: {
+    checkboxGroup: {
       type: 'checkbox-group',
-      label: '销售部门',
-      placeholder: '请输入销售部门代码',
+      label: 'checkboxGroup label',
       required: true,
       rules: [],
       colSize: 24,
@@ -201,24 +204,23 @@
       },
       children: [
         {
-          label: '前纺一车间1111',
-          value: 'W1'
+          label: 'checkbox one',
+          value: 'c1'
         },
         {
-          label: '前纺二车间',
-          value: 'W2'
+          label: 'checkbox two',
+          value: 'c2'
         },
         {
-          label: '前纺三车间',
-          value: 'W3'
+          label: 'checkbox three',
+          value: 'c3'
         }
       ]
     },
-    saleCountry22: {
+    treeSelect: {
       type: 'tree-select',
-      label: '行政区划',
-      placeholder: '请输入行政区划',
-      // required: true,
+      label: 'treeSelect label',
+      placeholder: 'select treeSelect',
       rules: [],
       colSize: 24,
       attrs: {
