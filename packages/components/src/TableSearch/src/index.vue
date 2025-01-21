@@ -1,7 +1,7 @@
 <template>
   <div
     ref="subListRef"
-    class="subList"
+    class="el2-table-search"
   >
     <el2-form
       ref="searchFormRef"
@@ -125,29 +125,9 @@
     resetSearchFormParams
   })
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
   $mainColor: #5864ff;
-
-  .search-btn {
-    margin-left: 10px;
-  }
-
-  .btn {
-    font-size: 14px;
-    color: $mainColor;
-    position: absolute;
-    right: 0px;
-    bottom: 2px;
-    background-color: #fff;
-    padding-left: 60px;
-    padding-right: 10px;
-
-    &:hover {
-      color: orange;
-    }
-  }
-
-  .subList {
+  .el2-table-search {
     // background-color: #f5f6fa;
     display: flex;
     flex-wrap: wrap;

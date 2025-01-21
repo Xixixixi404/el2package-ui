@@ -1,7 +1,7 @@
 {
   "name": "el2package-ui",
   "private": false,
-  "version": "2.1.5",
+  "version": "2.1.6",
   "description": "基于Element-plus二次封装基础组件",
   "keywords": [
     "element-ui",

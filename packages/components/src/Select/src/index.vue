@@ -1,7 +1,7 @@
 <template>
   <el-select
     v-model="childSelectedValue"
-    popper-class="jn_select"
+    popper-class="el2-select"
     :style="{ width: width || '100%' }"
     v-bind="{ clearable: true, filterable: true, ...$attrs }"
     :multiple="multiple"
@@ -77,8 +77,8 @@
     }
   }
 </script>
-<style lang="scss" scoped>
-  .jn_select {
+<style lang="scss">
+  .el2-select {
     .el-select-dropdown {
       .all_checkbox {
         width: 100%;

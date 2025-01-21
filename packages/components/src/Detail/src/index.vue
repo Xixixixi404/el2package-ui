@@ -82,17 +82,20 @@
 <script setup lang="ts">
   import RenderTooltip from './renderTooltip.vue'
 
-  const props = withDefaults(defineProps<{
-    descColumn: number
-    dataList: any
-    listTypeInfo: any
-    descData: any[]
-  }>(), {
-    descColumn: 4,
-    dataList: () => ({}),
-    listTypeInfo: () => ({}),
-    descData: () => []
-  })
+  const props = withDefaults(
+    defineProps<{
+      descColumn: number
+      dataList: any
+      listTypeInfo: any
+      descData: any[]
+    }>(),
+    {
+      descColumn: 4,
+      dataList: () => ({}),
+      listTypeInfo: () => ({}),
+      descData: () => []
+    }
+  )
 
   /**
    * 下拉数据回显中文过滤器
@@ -108,7 +111,7 @@
     return res && res[label]
   }
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
   .jn_detail {
     :deep(.el-descriptions__label) {
       font-weight: bold;

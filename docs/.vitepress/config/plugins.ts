@@ -58,8 +58,7 @@ export const mdPlugin = (md: any) => {
         const formattedContent = prettier.format(cleanedContent, {
           parser: 'vue' // 指定解析器为 vue
         })
-        console.log(formattedContent)
-
+        // console.log(formattedContent)
         // opening tag
         return `<Demo
               source="${encodeURIComponent(highlight(formattedContent, 'vue'))}"

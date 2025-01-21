@@ -32,11 +32,12 @@
       }
     },
     params: {
-      type: 'input',
+      type: 'input-number',
       label: 'params two',
       placeholder: 'placeholder',
       colSize: 24,
       attrs: {
+        controls: false,
         slot: {
           name: 'suffix',
           render: () => {

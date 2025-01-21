@@ -62,7 +62,7 @@
     <!-- 分页配置 -->
     <div
       v-if="showPagination"
-      class="pagination"
+      class="el2-pagination"
       :style="{ justifyContent: paginationFloat }"
     >
       <el-pagination
@@ -204,8 +204,8 @@
   defineExpose({ element: jnTableRef })
 </script>
 
-<style lang="scss" scoped>
-  .pagination {
+<style lang="scss">
+  .el2-pagination {
     text-align: right;
     margin: 10px 0;
     display: flex;

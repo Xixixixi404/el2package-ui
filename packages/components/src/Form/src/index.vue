@@ -45,15 +45,16 @@
                   :scope="item"
                 ></slot>
               </div>
-              <el-col
+
+              <slot
                 v-else
-                v-show="item.show"
-                :span="item?.colSize || 24"
+                :name="key"
+                :form-data="modelValue"
+                :schema="{ ...item }"
               >
-                <slot
-                  :name="key"
-                  :form-data="modelValue"
-                  :schema="{ ...item }"
+                <el-col
+                  v-show="item.show"
+                  :span="item?.colSize || 24"
                 >
                   <el-form-item
                     :prop="key"
@@ -101,8 +102,8 @@
                       </template>
                     </component>
                   </el-form-item>
-                </slot>
-              </el-col>
+                </el-col>
+              </slot>
             </template>
           </template>
           <el-col
@@ -398,7 +399,7 @@
   })
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
   .el2-form {
     .el-input,
     .el-cascader,

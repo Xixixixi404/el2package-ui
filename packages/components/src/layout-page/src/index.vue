@@ -27,7 +27,7 @@
     }
   })
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
   .t_layout_page {
     display: flex;
     flex-direction: column;
