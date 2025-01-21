@@ -80,12 +80,13 @@
       rules: [],
       colSize: 24,
       attrs: {
+        multiple: true,
         filterable: true,
         remote: true,
         reservekeyword: true,
         // remoteMethod: remoteMethod,
         clearable: true
-        // valueKey: 'label',
+        // valueKey: 'id'
       },
       events: {
         change: ($event, val) => changeSaleOrg($event, val)
@@ -93,15 +94,15 @@
       children: [
         {
           label: '前纺一车间',
-          value: 'W1'
+          value: 1
         },
         {
           label: '前纺二车间',
-          value: 'W2'
+          value: 2
         },
         {
           label: '前纺三车间',
-          value: 'W3'
+          value: 3
         }
       ]
     },

@@ -307,8 +307,8 @@
   const compChildValue = computed(() => {
     return (opt: any, child) => {
       switch (opt.type) {
-        // case 'select':
-        //   return child
+        case 'select':
+          return child
         default:
           return child[opt.attrs?.props?.value || 'value']
       }
