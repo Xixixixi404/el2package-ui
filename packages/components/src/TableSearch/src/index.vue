@@ -20,35 +20,37 @@
         <slot :name="item.slotName"></slot>
       </template>
       <template #searchAction="scope">
-        <el2-button
-          :time="time"
-          type="primary"
-          icon="Search"
-          @click="handleSearch(scope.model)"
-        >
-          查询
-        </el2-button>
-        <el2-button
-          :time="time"
-          icon="Refresh"
-          @click="resetSearchForm"
-        >
-          重置
-        </el2-button>
-        <el2-button
-          v-if="!scope.isShowExpand"
-          :time="time"
-          style="margin-left: 0"
-          type="primary"
-          link
-          @click="changeExpand"
-        >
-          <el-icon>
-            <ArrowDown v-if="!subListOpenFlag" />
-            <ArrowUp v-else />
-          </el-icon>
-          {{ !subListOpenFlag ? '展开' : '收起' }}
-        </el2-button>
+        <div class="search-control-button">
+          <el2-button
+            :time="time"
+            type="primary"
+            icon="Search"
+            @click="handleSearch(scope.model)"
+          >
+            查询
+          </el2-button>
+          <el2-button
+            :time="time"
+            icon="Refresh"
+            @click="resetSearchForm"
+          >
+            重置
+          </el2-button>
+          <el2-button
+            v-if="!scope.isShowExpand"
+            :time="time"
+            style="margin-left: 0"
+            type="primary"
+            link
+            @click="changeExpand"
+          >
+            <el-icon>
+              <ArrowDown v-if="!subListOpenFlag" />
+              <ArrowUp v-else />
+            </el-icon>
+            {{ !subListOpenFlag ? '展开' : '收起' }}
+          </el2-button>
+        </div>
       </template>
     </el2-form>
   </div>
@@ -133,6 +135,10 @@
     flex-wrap: wrap;
     position: relative;
     // overflow: hidden;
+
+    .search-control-button {
+      margin-bottom: 18px;
+    }
 
     li {
       margin: 15px;
